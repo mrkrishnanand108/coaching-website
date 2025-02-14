@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Login and Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container input[type="text"], .container input[type="password"], .container input[type="email"], .container input[type="tel"], .container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+        .link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .link a {
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        .register-container {
+            display: none;
+        }
+    </style>
+    <script>
+        function showRegister() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('register-container').style.display = 'block';
+        }
+
+        function sendOTP() {
+            // Placeholder function to send OTP
+            alert("OTP sent to your mobile number!");
+        }
+
+        function verifyOTP() {
+            // Placeholder function to verify OTP
+            alert("OTP verified successfully!");
+        }
+    </script>
+</head>
+<body>
+    
+    <div class="container" id="login-container">
+        <h2>Student Login</h2>
+        <form action="/login" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="link">
+            <p>New here? <a href="javascript:showRegister()">Register Now</a></p>
+        </div>
+    </div>
+
+    <div class="container register-container" id="register-container">
+        <h2>New Registration</h2>
+        <form action="/register" method="post" onsubmit="sendOTP(); return false;">
+            <input type="tel" name="mobile" placeholder="Mobile Number" required>
+            <button type="button" onclick="sendOTP()">Send OTP</button>
+            <input type="number" name="otp" placeholder="Enter OTP" required>
+            <button type="button" onclick="verifyOTP()">Verify OTP</button>
+            <input type="text" name="new_username" placeholder="Username" required>
+            <input type="password" name="new_password" placeholder="Password (6 digits)" pattern="\d{6}" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <select name="class" required>
+                <option value="">Select Class</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+                <option value="12">Class 12 (Biology)</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

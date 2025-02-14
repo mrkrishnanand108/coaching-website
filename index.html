@@ -26,6 +26,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            
         }
 
         header .logo h1 {
@@ -90,7 +91,7 @@
 
         main {
             padding: 20px;
-            text-align: center;
+            text-align: left;
         }
 
         footer {
@@ -98,11 +99,67 @@
             color: #fff;
             text-align: center;
             padding: 10px 0;
-            position: fixed;
+            
             bottom: 0;
             width: 100%;
         }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container input[type="text"], .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+        .login-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
     </style>
+    <script>
+        function showLogin() {
+            document.getElementById('login-container').style.display = 'block';
+        }
+
+        function closeLogin() {
+            document.getElementById('login-container').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -112,10 +169,8 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
                 <li><a href="courses.html">Courses</a></li>
-                <li><a href="admission.html">Admission</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login/Signup</a></li>
             </ul>
         </nav>
     </header>
@@ -140,20 +195,38 @@
     <main>
         <section id="courses">
             <h2>Our Courses</h2>
-            <p>Discover our range of courses designed to help you excel.</p>
+            <h3>Course Details</h3>
+
+     <h2>Classes 6 to 10 - All Subjects</h2>
+     <p><strong>Duration:</strong> Full Academic Year</p>
+     <ul>
+        <li>Mathematics</li>
+        <li>Science</li>
+        <li>Social Science</li>
+        <li>English</li>
+        <li>Hindi</li>
+        <li>Regular Tests and Assessments</li>
+        <li>Personalized Attention and Doubt Clearing Sessions</li>
+     </ul>
+
+     <h2>Class 12 - Biology</h2>
+     <p><strong>Duration:</strong> Full Academic Year</p>
+     <ul>
+        <li>Human Physiology</li>
+        <li>Plant Physiology</li>
+        <li>Genetics and Evolution</li>
+        <li>Ecology and Environment</li>
+        <li>Regular Tests and Assessments</li>
+        <li>Personalized Attention and Doubt Clearing Sessions</li>
+     </ul>
             <!-- Add course details here -->
         </section>
 
-        <section id="testimonials">
-            <h2>Testimonials</h2>
-            <p>Read what our students have to say about us.</p>
-            <!-- Add testimonials here -->
-        </section>
+        
     </main>
+    <br>
 
-    <footer>
-        <p>&copy; 2025 Krishna Saphlta Classes. All rights reserved.</p>
-    </footer>
+    
 
     <script>
         let slideIndex = 0;
@@ -169,9 +242,25 @@
                 slideIndex = 1;
             }
             slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 2000); // Change image every 2 seconds
+            setTimeout(showSlides, 2000); // Change image every 5 seconds
         }
     </script>
+    <section class="about-us">
+        <h3><a href="about.html">About </a></h3>
+    </section>
+    <div class="contact-info">
+       
+        <p>If you have any questions or would like to learn more about Krishna Saphlta Classes, please feel free to contact us at <a href="mailto:info@krishnasaphltaclasses.com">info@krishnasaphltaclasses.com</a> or call us at +91-7903630178.</p>
+        <h3><a href="contact.html">Contact us</a></p></h3>
+        <p><strong>Address:</strong> Kathautiya ward no 05 pin-852101 Madhepura</p>
+        <p><strong>Email:</strong> <a href="mailto:info@krishnasaphltaclasses.com">info@krishnasaphltaclasses.com</a></p>
+        
+    </div>
+    <br>
 </body>
+<footer>
+    <p>&copy; 2025 Krishna Saphlta Classes. All rights reserved.</p>
+    
+</footer>
 </html>
 
