@@ -26,6 +26,26 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            border: black 20px;
+            
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: right;
+            text-align: right;
+        }
+        
+
+        nav ul li {
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
             
         }
 
@@ -70,9 +90,9 @@
         }
 
         .course {
-            background: #fff;
+            background: #a76c6c;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #ffffff;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -88,7 +108,7 @@
 
         .course a {
             display: inline-block;
-            background: #ff6347;
+            background: #2a8d72;
             color: #fff;
             padding: 10px 15px;
             text-decoration: none;
@@ -109,15 +129,27 @@
         <div class="logo">
             <h1>Krishna Saphlta Classes</h1>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="login.html">Login/Signup</a></li>
-                
-            </ul>
-        </nav>
+       <br>
+       <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="login.html">Login/Signup</a></li>
+            
+        </ul>
+    </nav>
     </header>
+    <br>
+
+   
+    <script>
+        
+        document.getElementById("viewPdf").addEventListener("click", function () {
+            let classValue = document.getElementById("classSelect").value;
+            let subjectValue = document.getElementById("subjectSelect").value;
+            let pdfViewer = document.getElementById("pdfViewer");
+        });
+    </script>
 
     <main>
         <section class="courses">
@@ -166,6 +198,23 @@
             </div>
         </section>
     </main>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 10 seconds
+        }
+    </script>
 
     <footer>
         <p>&copy; 2025 Krishna Saphlta Classes. All rights reserved.</p>

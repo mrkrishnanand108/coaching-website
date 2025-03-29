@@ -25,10 +25,10 @@
 
         header .logo h1 {
             margin: 0;
-            font-size: 46px;
+            font-size: 48px;
             font-weight: bold;
             text-transform: uppercase;
-            text-shadow: 0 0 10px #ff00ff,0 0 20px #ff00ff, 0 0 20px #ff00ff
+            text-shadow: 0 0 2px #ff00ff,0 0 20px #ff00ff, 0 0 20px #ff00ff
         }
         header.logo h1{ 
             animation: glow 1.5s infinite alternate ;
@@ -42,6 +42,7 @@
             padding: 10px;
             
             }
+        nav :hover{color: blue;}
 
         ul {
             list-style: none;
@@ -61,20 +62,7 @@
             color: white;
             padding: 10px;
         }
-        select, button {
-            margin: 5px 0;
-            padding: 5px;
-            width: 100%;
-        }
-
-        .pdf-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-       
-
-
+        
         nav ul {
             list-style: none;
             display: flex;
@@ -198,6 +186,27 @@
             cursor: pointer;
             font-size: 20px;
         }
+         .courses1 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .courses1 {
+            background: #888484;
+            padding: 20px;
+            border: 1px solid #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .course h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+       
+
     </style>
     <script>
         function showLogin() {
@@ -225,14 +234,7 @@
         </ul>  
     </nav>
     
-    <script>
-        
-        document.getElementById("viewPdf").addEventListener("click", function () {
-            let classValue = document.getElementById("classSelect").value;
-            let subjectValue = document.getElementById("subjectSelect").value;
-            let pdfViewer = document.getElementById("pdfViewer");
-        });
-    </script>
+   
 </div>
     <div class="slideshow-container">
         <div class="mySlides fade">
@@ -245,45 +247,21 @@
             <img src="image03.jpg" alt="Image 3">
         </div>
     </div>
-    <br>
-
     <div class="notice">
-        <marquee behavior="scroll" direction="left">Welcome to Krishna Saphlta Classes! Join our new batch starting from next week.</marquee>
+        <marquee behavior="scroll" direction="left">Welcome to Krishna Saphlta Classes! Join our new batch start now 6 to 10 and 12th(Biology).</marquee>
     </div>
 
     <main>
-        <section id="courses">
-            <h2>Our Courses</h2>
-            <h3>Course Details</h3>
-
-     <h2>Classes 6 to 10 - All Subjects</h2>
-     <p><strong>Duration:</strong> Full Academic Year</p>
-     <ul>
-        <li>Mathematics</li>
-        <li>Science</li>
-        <li>Social Science</li>
-        <li>English</li>
-        <li>Hindi</li>
-        <li>Regular Tests and Assessments</li>
-        <li>Personalized Attention and Doubt Clearing Sessions</li>
-     </ul>
-
-     <h2>Class 12 - Biology</h2>
-     <p><strong>Duration:</strong> Full Academic Year</p>
-     <ul>
-        <li>Human Physiology</li>
-        <li>Plant Physiology</li>
-        <li>Genetics and Evolution</li>
-        <li>Ecology and Environment</li>
-        <li>Regular Tests and Assessments</li>
-        <li>Personalized Attention and Doubt Clearing Sessions</li>
-     </ul>
-            <!-- Add course details here -->
-        </section>
-
-        
+        <h2>Model Paper 10 Class</h2>
+       
+          <a href="social science.pdf" download>Social Science</a><br>
+           <a href="science.pdf" download> Science</a><br>
+           <a href="hindi.pdf" download> Hindi</a><br>
+           <a href="english.pdf" download> English</a><br>
+           <a href="maths_.pdf" download> Math</a>
     </main>
-    <br>
+    
+    
 
     
 
@@ -304,18 +282,60 @@
             setTimeout(showSlides, 2000); // Change image every 10 seconds
         }
     </script>
-    <section class="about-us">
-        <h3><a href="about.html">About </a></h3>
+    <section class="courses1">
+        <div class = "course">
+         <h2>Our Courses</h2>
+         <p><h3>Classes 6 to 10 - All Subjects</h3>
+            <p><strong>Duration:</strong> Full Academic Year</p>
+            <ul>
+               <li>Mathematics,
+               Science,
+               Social Science,
+               English, Hindi</li>
+               <li>Regular Tests and Assessments</li>
+               <li>Personalized Attention and Doubt Clearing Sessions</li>
+            </ul></p>
+        </div>
+        <div class = "course">
+            <h2>Class 12 - Biology</h2>
+            <p><p><strong>Duration:</strong> Full Academic Year</p>
+            <ul>
+               <li>Human Physiology, Plant Physiology</li>
+               <li>Genetics and Evolution</li>
+               <li>Ecology and Environment</li>
+               <li>Personalized Attention and Doubt Clearing Sessions</li>
+            </ul></p>
+           </div>
+        <div class="course">
+            <h2>about-us</h2>
+            <p> <h3>Our Mission</h3>
+                <p>Our mission is to empower students with the knowledge, skills, and confidence they need to succeed in their educational pursuits and beyond. We are dedicated to creating a supportive and inspiring learning environment that fosters growth and development.</p>
+    
+                <h3>Our Vision</h3>
+                <p>Our vision is to be a leading coaching institute recognized for excellence in teaching and learning. We aim to make a positive impact on the lives of our students and contribute to the betterment of society through education.</p>
+    
+                <h3>Our Team</h3>
+                <p>Meet our team of experienced and dedicated educators who are passionate about teaching and mentoring. Our teachers are experts in their respective fields and are committed to helping students achieve their full potential.</p>
+    
+                
+            
+        </div>
+        <div class="course">
+            <h2>Contact-us</h2>
+            <p><section class="contact-form">
+               
+                <p>If you have any questions or would like to learn more about Krishna Saphlta Classes, please fill out the form below. Our team will get in touch with you shortly.</p>
+                <div class="contact-info">
+                    <h3>Our Contact Information</h3>
+                    <p><strong>Address:</strong> Kathautiya ward no 05 pin-852101 Madhepura</p>
+                    <p><strong>Email:</strong> <a href="mailto:info@krishnasaphltaclasses.com">info@krishnasaphltaclasses.com</a></p>
+                    <p><strong>Phone:</strong> +917903630178</p>
+                </div>
+            </section></p>
+           
+        </div>
     </section>
-    <div class="contact-info">
-       
-        <p>If you have any questions or would like to learn more about Krishna Saphlta Classes, please feel free to contact us at <a href="mailto:info@krishnasaphltaclasses.com">info@krishnasaphltaclasses.com</a> or call us at +91-7903630178.</p>
-        <h3><a href="contact.html">Contact us</a></p></h3>
-        <p><strong>Address:</strong> Kathautiya ward no 05 pin-852101 Madhepura</p>
-        <p><strong>Email:</strong> <a href="mailto:info@krishnasaphltaclasses.com">info@krishnasaphltaclasses.com</a></p>
-        
-    </div>
-    <br>
+    
 </body>
 <footer>
     <p>&copy; 2025 Krishna Saphlta Classes. All rights reserved.</p>
