@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Krishna Safalta Classes - Fee Checker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #004080;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 220px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    #qrCode {
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 50px;
+      color: gray;
+      font-size: 14px;
+    }
+
+    .branding {
+      background-color: #004080;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .branding p {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="branding">
+    <h1>🎓 Krishna Safalta Classes</h1>
+    <p>📍 Kathautiya,Bihariganj(Madhepura) Bihar</p>
+    <p>📞 7903630178 | 📧 krishnanand9155@gmail.com</p>
+    <p>👨‍🏫 संचालक: Krishnanand Kumar</p>
+  </div>
+
+  <h2>छात्र की फीस जानकारी देखें</h2>
+  <h2><a href="index.html">Back</a></h2>
+
+  <input type="text" id="nameInput" placeholder="रोल नंबर दर्ज करें" />
+  <button onclick="checkFee()">Check Fee</button>
+
+  <div id="result"></div>
+  <div id="qrCode"></div>
+
+  <div class="footer">
+    &copy; 2025 Krishna Safalta Classes | Developed by Dixzel Krishna
+  </div>
+
+  <script>
+    async function checkFee() {
+      const roll = document.getElementById('nameInput').value.trim();
+      const resultDiv = document.getElementById('result');
+      const qrDiv = document.getElementById('qrCode');
+      resultDiv.innerHTML = "";
+      qrDiv.innerHTML = "";
+
+      try {
+        const res = await fetch('students.json');
+        const students = await res.json();
+        const student = students.find(s => s.roll === roll);
+
+        if (!student) {
+          resultDiv.innerHTML = `<p style="color:red;">❌ Student not found</p>`;
+          return;
+        }
+
+        const localKey = `last_payment_${student.roll}`;
+        const lastPaymentDate = localStorage.getItem(localKey);
+        const startDate = lastPaymentDate ? new Date(lastPaymentDate) : new Date(student.admission_date);
+        const today = new Date();
+
+        const months =
+          (today.getFullYear() - startDate.getFullYear()) * 12 +
+          (today.getMonth() - startDate.getMonth()) + 1;
+
+        const totalFee = months * student.monthly_fee;
+
+        resultDiv.innerHTML = `
+          <h3>👤 नाम: ${student.name}</h3>
+          <p>🎫 रोल नंबर: ${student.roll}</p>
+          <p>👨‍👦 पिता का नाम: ${student.father_name}</p>
+          <p>📅 अंतिम भुगतान: ${lastPaymentDate ? lastPaymentDate.split('T')[0] : 'कोई भुगतान नहीं'}</p>
+          <p>💰 मासिक शुल्क: ₹${student.monthly_fee}</p>
+          <h4>🗓 कुल ${months} महीनों के लिए भुगतान</h4>
+          <h3>कुल देय राशि: ₹${totalFee}</h3>
+          <button onclick="markAsPaid('${student.roll}')">✅ Mark as Paid</button>
+        `;
+
+        const upiLink = `upi://pay?pa=7903630178@ybl&pn=Krishnanand%20Kumar&am=${totalFee}&cu=INR`;
+        new QRCode(qrDiv, upiLink);
+
+      } catch (error) {
+        resultDiv.innerHTML = `<p style="color:red;">⚠ Data load करने में समस्या आई</p>`;
+        console.error(error);
+      }
+    }
+
+    function markAsPaid(roll) {
+      const todayStr = new Date().toISOString();
+      localStorage.setItem(`last_payment_${roll}`, todayStr);
+      alert("✅ Payment marked as done!");
+    }
+  </script>
+</body>
+</html>
