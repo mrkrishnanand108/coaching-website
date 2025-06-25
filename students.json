@@ -1,0 +1,16 @@
+[
+    {
+      "name": "Aman Kumar",
+      "roll": "1",
+      "father_name": "Ramesh Kumar",
+      "admission_date": "2024-09-17",
+      "monthly_fee": 300
+    },
+    {
+      "name": "Ravi Singh",
+      "roll": "2",
+      "father_name": "Mukesh Singh",
+      "admission_date": "2024-09-17",
+      "monthly_fee": 300
+    }
+  ]

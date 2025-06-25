@@ -4,35 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krishna Saphlta Classes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        * body {
+         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             background-color: #f4f4f4;
         }
-
-        header {
-            background: #3896e7;
-            color: #00ff1e;
+        
+  
+    main div { font-family: Arial; margin: 20px; }
+    label, input, button { margin: 10px 0; display: block; }
+    #result, #qrCode { margin-top: 20px; }
+  header {
+            background: #051fc7;
+            color: #5ef214;
             padding: 10px 0;
             text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            font-size: 2rem;
+            font-style: italic;
             
         }
 
         header .logo h1 {
             margin: 0;
-            font-size: 48px;
             font-weight: bold;
             text-transform: uppercase;
-            text-shadow: 0 0 2px #ff00ff,0 0 20px #ff00ff, 0 0 20px #ff00ff
+            text-shadow: 0 0 2px #03ff70,0 0 20px #1afd65, 0 0 20px #c65593
         }
         header.logo h1{ 
             animation: glow 1.5s infinite alternate ;
         }
+        .logo.container{
+            width: 100%; 
+            height: 3px; 
+            flex: 1;
+            display: block;
+            object-fit: cover;
+    
+
+        }
+        
+        
         nav {background: #070707;
             color: #fff;
             text-align:  left;
@@ -42,7 +59,11 @@
             padding: 10px;
             
             }
-        nav :hover{color: blue;}
+        nav :hover{color: blue;
+         }
+         
+         
+            
 
         ul {
             list-style: none;
@@ -50,40 +71,27 @@
             width: 100%;
             padding: 0;
             margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: right;
+            text-align: right;
         }
 
         li {
             padding: 10px;
             position: relative;
+            margin: 0 5px;
+            text-align: center;
         }
 
         li a {
             text-decoration: none;
             color: white;
             padding: 10px;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: right;
-            text-align: right;
-        }
-        
-
-        nav ul li {
-            margin: 0 5px;
-            text-align: center;
-        }
-
-        nav ul li a {
             color: #fff;
             text-decoration: none;
-            padding: 10px;
-            
         }
         
-
         .hero {
             background: url('hero-image.jpg') no-repeat center center/cover;
             color: #fff;
@@ -101,39 +109,17 @@
             margin-bottom: 20px;
         }
 
-        .slideshow-container {
-            max-width: 100%; /* Adjusted width */
-           
-            position: relative;
-            margin: auto;
-
-        }
-
-        .mySlides {
-            display: none;
-        }
-
-        img {
-            width: 100%; 
-            height: 300px; 
-            flex: 1;
-            display: block;
-            object-fit: cover;
-        
-        }
-
         .notice {
             background: #ffeb3b;
             text-align: center;
-            padding: 10px 0;
-            margin-top: 10px;
+            font-size: 20px;
+            font-style: italic;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 1px 0;
+            margin-top: 1px;
         }
-
-        main {
-            padding: 20px;
-            text-align: left;
-        }
-
+       
+        
         footer {
             background: #333;
             color: #fff;
@@ -143,41 +129,7 @@
             bottom: 0;
             width: 100%;
         }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .container input[type="text"], .container input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .container button:hover {
-            background-color: #45a049;
-        }
+        
         
         .popup .close {
             position: absolute;
@@ -204,10 +156,48 @@
             margin-bottom: 10px;
             color: #333;
         }
+       
+  
+    .footer {
+      margin-top: 50px;
+      color: gray;
+      font-size: 14px;
+    }
+
+   
+  .payment-logo {
+      width: 100px !important;
+      cursor: pointer;
+    }
+    .payment-box {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #aaa !important;
+      width: 300px;
+    }
+   
+.tab {
+  display: flex;
+  align-items: left;
+  gap: 2px; /* space between the logos */
+}
+.tab img {
+   width: 80px;
+  height: auto;
+  border: 4px solid #0067a7; /* light blue border */
+  border-radius: 50%;
+  box-shadow: 
+    inset -5px -5px 15px rgba(12, 12, 12, 0.6),
+    inset 5px 5px 15px rgba(0, 0, 255, 0.1),
+    0 0 15px rgba(173, 216, 230, 0.7); /* outer glow for 3D water effect */
+  background: radial-gradient(circle at 30% 30%, #e0f7ff, #a0d8ef);
+  padding: 5px;
+}
+
+  </style>
 
        
-
-    </style>
     <script>
         function showLogin() {
             document.getElementById('login-container').style.display = 'block';
@@ -216,10 +206,17 @@
         function closeLogin() {
             document.getElementById('login-container').style.display = 'none';
         }
+        function openPDF(select){
+            var pdfurl = select.value;
+            if (pdfurl) {
+                window.open(pdfurl,'_blank');
+            }
+        }
     </script>
 </head>
 <body>
     <header>
+        
         <div class="logo">
             <h1>Krishna Saphlta Classes</h1>
             
@@ -232,58 +229,46 @@
             <li><a href="courses.html">Courses</a></li>
             <li><a href="login.html">Login/Signup</a></li>
         </ul>  
+        <select onchange="openPDF(this)">
+             <option value=""Disabled selected>Model paper</option>
+             <option value="science.pdf">Science</option>
+             <option value="hindi.pdf">Hindi</option>
+             <option value="english.pdf">English</option>
+             <option value="maths_.pdf">Math</option>
+             <option value="Sanskrit.pdf">Sanskrit</option>
+             
+        </select> 
     </nav>
     
    
 </div>
-    <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="image01.jpg" alt="Image 1">
-        </div>
-        <div class="mySlides fade">
-            <img src="image02.jpg" alt="Image 2">
-        </div>
-        <div class="mySlides fade">
-            <img src="image03.jpg" alt="Image 3">
-        </div>
-    </div>
+    
     <div class="notice">
-        <marquee behavior="scroll" direction="left">Welcome to Krishna Saphlta Classes! Join our new batch start now 6 to 10 and 12th(Biology).</marquee>
+        <marquee behavior="scroll" direction="left"><h3>Welcome to K.K Saphlta Classes! Join our new batch start now 6 to 10 and 12th(Biology).</marquee>
     </div>
 
     <main>
-        <h2>Model Paper 10 Class</h2>
-       
-          <a href="social science.pdf" download>Social Science</a><br>
-           <a href="science.pdf" download> Science</a><br>
-           <a href="hindi.pdf" download> Hindi</a><br>
-           <a href="english.pdf" download> English</a><br>
-           <a href="maths_.pdf" download> Math</a>
-    </main>
-    
-    
-
-    
-
-    <script>
-        let slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            let slides = document.getElementsByClassName("mySlides");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 2000); // Change image every 10 seconds
-        }
-    </script>
+        <section class="tab">
+            
+         <li>
+              <a href="payment.html" target="_blank" rel="noopener noreferrer">
+                <img src="payment-icon-5646.png" alt="Pay Now" width="150">
+              </a>
+            <h3>Payment</h3></li>
+         <li>
+              <a href="courses.html" target="_blank" rel="noopener noreferrer">
+                <img src="cources.png" alt="Pay Now" width="150">
+              </a>
+            <h3>Cources</h3></li>
+        <li>
+              <a href="courses.html" target="_blank" rel="noopener noreferrer">
+                <img src="notebook-pen-icon.png" alt="Pay Now" width="150">
+              </a>
+            <h3>Notes</h3></li>
+              
+        </section>
     <section class="courses1">
-        <div class = "course">
+        <div class = "cour">
          <h2>Our Courses</h2>
          <p><h3>Classes 6 to 10 - All Subjects</h3>
             <p><strong>Duration:</strong> Full Academic Year</p>
@@ -296,7 +281,7 @@
                <li>Personalized Attention and Doubt Clearing Sessions</li>
             </ul></p>
         </div>
-        <div class = "course">
+        <div class = "cour">
             <h2>Class 12 - Biology</h2>
             <p><p><strong>Duration:</strong> Full Academic Year</p>
             <ul>
@@ -306,7 +291,7 @@
                <li>Personalized Attention and Doubt Clearing Sessions</li>
             </ul></p>
            </div>
-        <div class="course">
+        <div class="cour">
             <h2>about-us</h2>
             <p> <h3>Our Mission</h3>
                 <p>Our mission is to empower students with the knowledge, skills, and confidence they need to succeed in their educational pursuits and beyond. We are dedicated to creating a supportive and inspiring learning environment that fosters growth and development.</p>
@@ -320,7 +305,7 @@
                 
             
         </div>
-        <div class="course">
+        <div class="cour">
             <h2>Contact-us</h2>
             <p><section class="contact-form">
                

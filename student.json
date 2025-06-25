@@ -1,0 +1,17 @@
+[
+    {
+      "name": "Aashish Kumar",
+      "roll": "1",
+      "father_name": "Arjun sah ",
+      "admission_date": "2024-09-17",
+      "monthly_fee": 300
+    },
+    {
+      "name": "Shivam Kumar",
+      "roll": "2",
+      "father_name": "Santosh Sah",
+      "admission_date": "2024-09-17",
+      "monthly_fee":300
+    }
+
+  ]
