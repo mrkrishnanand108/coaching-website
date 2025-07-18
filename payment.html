@@ -2,150 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Krishna Safalta Classes - Fee Checker</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <title>Student Fee Checker with QR</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #e6f2ff;
-      padding: 20px;
-      text-align: center;
+      margin: 40px;
     }
-
-    h1 {
-      font-size: 32px;
-      color: #004080;
-      margin-bottom: 5px;
-    }
-
-    h2 {
-      font-size: 20px;
-      color: #333;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-
-    input {
+    input, button {
       padding: 10px;
       font-size: 16px;
-      width: 220px;
-      margin-right: 10px;
+    }
+    #result p {
+      margin: 5px 0;
     }
 
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-
-    #result {
-      margin-top: 30px;
-      font-size: 18px;
-      color: #333;
-    }
-
-    #qrCode {
+    .dots-loader {
+      display: flex;
+      justify-content: center;
       margin-top: 20px;
     }
 
-    .footer {
-      margin-top: 50px;
-      color: gray;
-      font-size: 14px;
+    .dots-loader div {
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: #3498db;
+      border-radius: 50%;
+      animation: bounce 0.6s infinite alternate;
+    }
+    
+    .dots-loader div:nth-child(2) {
+      animation-delay: 0.2s;
     }
 
-    .branding {
-      background-color: #004080;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 30px;
+    .dots-loader div:nth-child(3) {
+      animation-delay: 0.4s;
     }
 
-    .branding p {
-      margin: 5px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="branding">
-    <h1>🎓 Krishna Safalta Classes</h1>
-    <p>📍 Kathautiya,Bihariganj(Madhepura) Bihar</p>
-    <p>📞 7903630178 | 📧 krishnanand9155@gmail.com</p>
-    <p>👨‍🏫 संचालक: Krishnanand Kumar</p>
-  </div>
-
-  <h2>छात्र की फीस जानकारी देखें</h2>
-  <h2><a href="index.html">Back</a></h2>
-
-  <input type="text" id="nameInput" placeholder="रोल नंबर दर्ज करें" />
-  <button onclick="checkFee()">Check Fee</button>
-
-  <div id="result"></div>
-  <div id="qrCode"></div>
-
-  <div class="footer">
-    &copy; 2025 Krishna Safalta Classes | Developed by Dixzel Krishna
-  </div>
-
-  <script>
-    async function checkFee() {
-      const roll = document.getElementById('nameInput').value.trim();
-      const resultDiv = document.getElementById('result');
-      const qrDiv = document.getElementById('qrCode');
-      resultDiv.innerHTML = "";
-      qrDiv.innerHTML = "";
-
-      try {
-        const res = await fetch('students.json');
-        const students = await res.json();
-        const student = students.find(s => s.roll === roll);
-
-        if (!student) {
-          resultDiv.innerHTML = `<p style="color:red;">❌ Student not found</p>`;
-          return;
-        }
-
-        const localKey = `last_payment_${student.roll}`;
-        const lastPaymentDate = localStorage.getItem(localKey);
-        const startDate = lastPaymentDate ? new Date(lastPaymentDate) : new Date(student.admission_date);
-        const today = new Date();
-
-        const months =
-          (today.getFullYear() - startDate.getFullYear()) * 12 +
-          (today.getMonth() - startDate.getMonth()) + 1;
-
-        const totalFee = months * student.monthly_fee;
-
-        resultDiv.innerHTML = `
-          <h3>👤 नाम: ${student.name}</h3>
-          <p>🎫 रोल नंबर: ${student.roll}</p>
-          <p>👨‍👦 पिता का नाम: ${student.father_name}</p>
-          <p>📅 अंतिम भुगतान: ${lastPaymentDate ? lastPaymentDate.split('T')[0] : 'कोई भुगतान नहीं'}</p>
-          <p>💰 मासिक शुल्क: ₹${student.monthly_fee}</p>
-          <h4>🗓 कुल ${months} महीनों के लिए भुगतान</h4>
-          <h3>कुल देय राशि: ₹${totalFee}</h3>
-          <button onclick="markAsPaid('${student.roll}')">✅ Mark as Paid</button>
-        `;
-
-        const upiLink = `upi://pay?pa=7903630178@ybl&pn=Krishnanand%20Kumar&am=${totalFee}&cu=INR`;
-        new QRCode(qrDiv, upiLink);
-
-      } catch (error) {
-        resultDiv.innerHTML = `<p style="color:red;">⚠ Data load करने में समस्या आई</p>`;
-        console.error(error);
+    @keyframes bounce {
+      to {
+        transform: translateY(-15px);
       }
     }
 
-    function markAsPaid(roll) {
-      const todayStr = new Date().toISOString();
-      localStorage.setItem(`last_payment_${roll}`, todayStr);
-      alert("✅ Payment marked as done!");
+    .loading-text {
+      text-align: center;
+      font-weight: bold;
+      color: #555;
+      margin-top: 10px;
+    }
+    h1{
+      background-color: lawngreen;
+      padding: 20px;
+      color: rgb(8, 17, 192);
+     text-align: center;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+   
+  </style>
+</head>
+<head>
+  <h1> KRISHNA SAFALTA CLASSES</h1>
+ 
+</head>
+<body>
+  
+  <div class="Fee"><h2>📋 Student Fee Status</h2>
+  <input type="text" id="rollInput" placeholder="Enter Roll No">
+  <button onclick="searchRoll()">Check</button>
+  </div>
+
+  <div id="result" style="margin-top: 20px;"></div>
+  <canvas id="qrcode" style="margin-top: 20px;"></canvas>
+
+  <script>
+    const sheetTSVUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTV8rwVoKLrurXqX-CImyvrF29n92wfaeHPpwYSiVpw-27xdpWkkHtgK1lzgccoNKuF7wDsmS5G0qXJ/pub?output=tsv';
+    const upiID = "7903630178@ybl";
+
+    function getMonthDifference(startDate, endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      return (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) + 1;
+    }
+
+    function cleanAmount(value) {
+      return parseInt(value.replace(/[^\d]/g, '').trim()) || 0;
+    }
+
+    function searchRoll() {
+      const roll = document.getElementById("rollInput").value.trim();
+      const resultDiv = document.getElementById("result");
+      const qrCanvas = document.getElementById("qrcode");
+
+      resultDiv.innerHTML = `
+        <div class="dots-loader">
+          <div></div><div></div><div></div>
+        </div>
+        <div class="loading-text">Loading...</div>
+      `;
+      const ctx = qrCanvas.getContext("2d");
+      if (ctx) ctx.clearRect(0, 0, qrCanvas.width, qrCanvas.height);
+
+      fetch(sheetTSVUrl)
+        .then(response => response.text())
+        .then(tsv => {
+          const rows = tsv.trim().split('\n');
+          const headers = rows[0].split('\t').map(h => h.trim());
+          const data = rows.slice(1).map(row => {
+            const values = row.split('\t');
+            const obj = {};
+            headers.forEach((header, i) => {
+              obj[header] = values[i] ? values[i].trim() : '';
+            });
+            return obj;
+          });
+
+          const student = data.find(row => row["Roll No"] === roll);
+
+          if (student) {
+            const today = new Date();
+            const admissionDate = student["Admission Date"];
+            const months = getMonthDifference(admissionDate, today);
+            const monthlyFee = cleanAmount(student["Monthly Fee"]);
+            const paidAmount = cleanAmount(student["Paid Amount"]);
+            const totalFee = months * monthlyFee;
+            const dueAmount = totalFee - paidAmount;
+
+            const name = student["Name"];
+            const father = student["Father's Name"];
+
+            resultDiv.innerHTML = `
+              <p><b>Name:</b> ${name}</p>
+              <p><b>Father's Name:</b> ${father}</p>
+              <p><b>Admission Date:</b> ${admissionDate}</p>
+              <p><b>Monthly Fee:</b> ₹${monthlyFee}</p>
+              <p><b>Total Months:</b> ${months}</p>
+              <p><b>Total Fee:</b> ₹${totalFee}</p>
+              <p><b>Paid Amount:</b> ₹${paidAmount}</p>
+              <p><b>Due Amount:</b> <b style="color: red">₹${dueAmount}</b></p>
+              <p><b>Scan to Pay Due:</b></p>
+            `;
+
+            const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent("Krishna Classes")}&am=${dueAmount}&cu=INR&tn=${encodeURIComponent("Fee for Roll " + roll)}`;
+
+            QRCode.toCanvas(qrCanvas, upiLink, function (error) {
+              if (error) {
+                console.error("QR Code Error:", error);
+                resultDiv.innerHTML += "<p style='color:red'>❌ QR Code generation failed.</p>";
+              }
+            });
+          } else {
+            resultDiv.innerHTML = "<b style='color:red'>❌ Roll No not found!</b>";
+          }
+        })
+        .catch(error => {
+          console.error("TSV fetch error:", error);
+          resultDiv.innerHTML = "<b style='color:red'>❌ Failed to load data.</b>";
+        });
     }
   </script>
 </body>

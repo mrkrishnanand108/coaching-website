@@ -60,20 +60,54 @@
             animation: glow 1.5s infinite alternate ;
         }
 
+        nav {background: #363333;
+            color: #fff;
+            text-align:  left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            
+            }
+        nav :hover{color: blue;}
+
+        ul {
+            list-style: none;
+            display: flex;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 10px;
+            position: relative;
+        }
+
+        li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+        }
+        
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
+            justify-content: right;
+            text-align: right;
         }
+        
 
         nav ul li {
-            margin: 0 15px;
+            margin: 0 5px;
+            text-align: center;
         }
 
         nav ul li a {
             color: #fff;
             text-decoration: none;
             padding: 10px;
+            
         }
 
         main {
@@ -114,6 +148,12 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        .notice {
+            background: #ffeb3b;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 10px;
+        }
 
         footer {
             background: #333;
@@ -129,8 +169,9 @@
         <div class="logo">
             <h1>Krishna Saphlta Classes</h1>
         </div>
-       <br>
-       <nav>
+      
+    </header>
+    <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="courses.html">Courses</a></li>
@@ -138,8 +179,10 @@
             
         </ul>
     </nav>
-    </header>
-    <br>
+    <div class="notice">
+        <marquee behavior="scroll" direction="left"><h3>Welcome to Krishna Saphlta Classes! Join our new batch start now 6 to 10 and 12th(Biology).</marquee>
+    </div>
+    
 
    
     <script>
@@ -152,51 +195,55 @@
     </script>
 
     <main>
+        
+    
         <section class="courses">
             <div class="course">
                 <h3>Class 6</h3>
                 <p>Comprehensive curriculum covering all subjects including Math, Science, English, and Social Studies.</p>
-                <a href="admission.html">Enroll Now</a>
+                <a href="login.html">Enroll Now</a>
             </div>
             <div class="course">
                 <h3>Class 7</h3>
                 <p>Advanced learning with focus on critical thinking, problem-solving, and analytical skills.All Subject</p>
-                <a href="admission.html">Select Now</a>
+                <a href="login.html">Select Now</a>
             </div>
             <div class="course">
                 <h3>Class 8</h3>
                 <p>In-depth coverage of all subjects with special emphasis on preparation for higher classes.All Subject</p>
-                <a href="admission.html">Select Now</a>
+                <a href="login.html">Select Now</a>
             </div>
             <div class="course">
                 <h3>Class 9</h3>
                 <p>Rigorous academic training and preparation for board examinations.All Subject</p>
-                <a href="admission.html">Select Now</a>
+                <a href="login.html">Select Now</a>
             </div>
             <div class="course">
                 <h3>Class 10</h3>
                 <p>Intensive coaching for board exams with personalized attention and doubt clearing sessions.
                     All Subject
                 </p>
-                <a href="admission.html">Select Now</a>
+                <a href="login.html">Select Now</a>
             </div>
             <div class="course">
                 <h3>Class 11</h3>
                 <p>Biology preparation for board exams and entrance exams with mock tests and practice sessions.</p>
-                <a href="admission.html">Select Now</a>
+                <a href="login.html">Select Now</a>
             </div>
             <div class="course">
                 <h3>Class 12</h3>
                 <p>Biology preparation for board exams and entrance exams with mock tests and practice sessions.</p>
-                <a href="admission.html"> Select Now</a>
+                <a href="login.html"> Select Now</a>
                
             </div>
             <div class="course">
                 <h3>Competitive Exams</h3>
                 <p>Special coaching for competitive exams like Samuntalla, navoday, and others with experienced faculty.</p>
-                <a href="admission.html">Select</a>
+                <a href="login.html">Select</a>
             </div>
+
         </section>
+        
     </main>
     <script>
         let slideIndex = 0;
