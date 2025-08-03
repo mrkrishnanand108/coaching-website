@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krishna Saphlta Classes</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
     <style>
          body {
             font-family: Arial, sans-serif;
@@ -27,7 +28,7 @@
             padding: 20px;
             font-size: 2rem;
             font-style: italic;
-            
+             
         }
 
         header .logo h1 {
@@ -128,6 +129,7 @@
             
             bottom: 0;
             width: 100%;
+           
         }
         
         
@@ -209,12 +211,14 @@
     text-decoration: none;
     font-weight: bold;
     margin-right: 10px;
+    display: flex;
 }
 .contact{text-decoration: none;
-color: #070707;}
+color: #070707;
+ display: flex;}
 .about{text-decoration: none;
 color: #070707;}
-courses {
+courses{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
@@ -250,6 +254,89 @@ courses {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 10px;
         }
+   /* Basic Page Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+ .chatbot-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.chatbot-logo {
+  width: 80px;
+  height: auto;
+  animation: jump 1s infinite ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+ #bot-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      cursor: pointer;
+    }
+ #chatbox {
+      position: fixed;
+      bottom: 110px;
+      right: 20px;
+      width: 300px;
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 999;
+      font-family: sans-serif;
+      display: none;
+    }
+
+    #chat-header {
+      background: #003366;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    #chat-messages {
+      height: 200px;
+      padding: 10px;
+      overflow-y: auto;
+      background: #f7f7f7;
+    }
+ #input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #user-input {
+      width: 70%;
+      padding: 8px;
+      border: none;
+      border-top: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+#send-button, #mic-button {
+      width: 20%;
+      background: #092f56;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+   
 
 
   </style>
@@ -264,6 +351,7 @@ courses {
         </div>
        
     </header>
+   
     <nav>  
         <ul><li>  <a href="https://wa.me/917903630178" class="whatsapp-button">Chat on WhatsApp</a></li>
             <li><a href="index.html">Home</a></li>
@@ -319,6 +407,160 @@ courses {
             
               
         </section>
+
+<div id="bot-icon">
+
+  <img src="chatbot.png" alt="Chatbot Logo" class="chatbot-logo" />
+ 
+</div>
+<!-- Chatbox -->
+  <div id="chatbox">
+    <div id="chat-header">🙏 Krishna Safalta Chatbot</div>
+    <div id="chat-messages"></div>
+    <div id="input-area">
+      <input type="text" id="user-input" placeholder="Apna prashn likhiye..." />
+      <button id="send-button">Send</button>
+      <button id="mic-button">🎤</button>
+    </div>
+  </div>
+   <script src="https://code.responsivevoice.org/responsivevoice.js?key=F9nylgLt"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const botIcon = document.getElementById("bot-icon");
+      const chatbox = document.getElementById("chatbox");
+      const chatMessages = document.getElementById("chat-messages");
+      const userInput = document.getElementById("user-input");
+      const sendButton = document.getElementById("send-button");
+      const micButton = document.getElementById("mic-button");
+
+     const qa = {
+  "hi": "नमस्ते! मैं कृष्णा सफलता क्लासेस का सहायक हूँ।",
+  "fees": "हमारे कोर्स की फीस अलग-अलग है। कृपया कोर्स का नाम बताएं।",
+  "timing": "क्लास टाइम: सुबह 5:30 से 9:00 और शाम 4:00 से 5:00।",
+  "admission": "एडमिशन के लिए ऑफिस आएं या कॉल करें: 7903630178",
+  "contact": "संपर्क करें: 7903630178",
+  "address": "हमारा पता: कृष्णा सफलता क्लासेस, पटना",
+  "notes": "सभी विषयों के नोट्स क्लास में दिए जाते हैं।",
+  "navodaya": "हम नवोदय, सैनिक व बोर्ड परीक्षा की तैयारी कराते हैं।",
+  "teacher": "हमारे सभी शिक्षक अनुभवी और विषय विशेषज्ञ हैं।",
+  "holiday": "अगली छुट्टी रविवार को है। तब तक पढ़ाई करते रहिए!",
+  "exam": "अगली परीक्षा की तारीख नोटिस बोर्ड पर है। ध्यान से देखिए।",
+  "subject": "हम मैथ्स, साइंस, इंग्लिश, हिंदी, संस्कृत सभी सब्जेक्ट पढ़ाते हैं।",
+  "lunch": "लंच टाइम 10:00 बजे होता है। लेकिन बिस्किट पहले ही गायब हो जाते हैं!",
+  "fail": "असफलता सफलता की सीढ़ी है। दोबारा कोशिश कीजिए!",
+  "pass": "बधाई हो! पास होने की मिठाई मुझे भी भेजिए।",
+  "crush": "Crush की बात बाद में। पहले बोर्ड की परीक्षा जीतिए!",
+  "dance": "डांस करना है? पहले क्लास में टॉप करना पड़ेगा!",
+  "wifi": "Wi-Fi केवल staff के लिए है। Students के लिए data pack बेहतर है।",
+  "laddu": "हमारे Marua Laddu का ब्रांड है 'Svadik' – घर जैसा स्वाद!",
+  "topper": "टॉपर बनने के लिए revision को अपना crush बनाओ!",
+  "revision": "Revision सबसे अच्छा exam से एक हफ्ता पहले होता है। panic से नहीं!",
+  "motivation": "रोज़ आइने में कहो: 'मैं कर सकता हूँ!' फिर action लो।",
+  "punishment": "गलती पर सज़ा? नहीं! सीख मिलती है यहाँ।",
+  "result": "रिज़ल्ट आने पर टेंशन नहीं। Feedback मिलेगा बेहतर करने का!",
+  "uniform": "Uniform जरूरी नहीं—but smart दिखना जरूरी है!",
+  "books": "Books हैं तो ब्रह्मा का वरदान है। पढ़ो और बदलो!",
+  "funny": "Funny बातें बाद में। अभी syllabus funny लग रहा है!",
+  "forget": "कुछ भूल गए? मैं हूँ न याद दिलाने के लिए।",
+  "hello": "Hello नहीं—Namaste बोलिए, संस्कार भी सीखिए!",
+  "toilet": "Toilet ब्रेक के लिए permission teacher से लेना ज़रूरी है।",
+  "discipline": "अनुशासन सफलता की कुंजी है। बाकी सब बाद में आता है।",
+  "birthday": "बर्थडे है? टॉफी लाओ सबको और आशीर्वाद पाओ!",
+  "calculator": "Math में calculator नहीं चलेगा। दिमाग चाहिए!",
+  "mobile": "मोबाइल क्लास के बाद चलाएं, पहले ध्यान क्लास में लगाएं!",
+  "game": "Game क्लास के बाद खेलें। यहाँ syllabus का level high है!",
+  "homework": "होमवर्क टालने की कला नहीं सिखाते—पूरा करना सिखाते हैं!",
+  "assignment": "Assignment का मतलब होता है deadline और discipline!",
+  "board": "Board exam की तैयारी हमारे साथ आसान और मजबूत होती है।",
+  "target": "Target सेट कीजिए—उसके पीछे मैं भी मदद करूंगा।",
+  "science": "Science में practical के साथ concepts भी जरूरी हैं।",
+  "maths": "Maths में सवालों से दोस्ती करना पड़ेगा!",
+  "english": "English बोलना सीखना है? क्लास में बोलिए, डरिए मत!",
+  "hindi": "हिन्दी हमारी मातृभाषा है—इसके व्याकरण में दम है!",
+  "sanskrit": "संस्कृत श्लोकों में ज्ञान की गहराई है। थोड़ा समझिए!",
+  "biology": "Biology में दिल होता है—but पढ़ाई में दिमाग भी लगेगा!",
+  "chemistry": "Chemistry में bonding करो—not सिर्फ रिएक्शन याद करो!",
+  "physics": "Physics में concept जानो—not बस formula रटना!",
+  "sleep": "नींद तब आए जब syllabus खत्म हो। वरना सपने syllabus वाले ही होंगे!",
+  "goal": "Goal बनाओ और रोज़ थोड़ा-थोड़ा उसकी तरफ बढ़ो।",
+  "routine": "रूटीन बनाना है तो 2 घंटे पढ़ाई रोज़ पक्की करो!"
+};
+
+      botIcon.onclick = () => {
+        chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+      };
+
+      sendButton.addEventListener("click", handleUserMessage);
+
+      micButton.addEventListener("click", () => {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = "hi-IN";
+        recognition.interimResults = false;
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          userInput.value = transcript;
+          handleUserMessage();
+        };
+        recognition.onerror = () => {
+          appendMessage("🤖 बॉट", "🔇 आवाज़ पहचान में दिक्कत हुई, कृपया फिर प्रयास करें।");
+        };
+        recognition.start();
+      });
+
+      function handleUserMessage() {
+        const msg = userInput.value.toLowerCase().trim();
+        if (!msg) return;
+        appendMessage("👨‍🎓 आप", msg);
+        userInput.value = "";
+
+        const response = getBotReply(msg);
+        showTyping(() => {
+          appendMessage("🤖 बॉट", response);
+          if (responsiveVoice.voiceSupport()) {
+            responsiveVoice.speak(response, "Hindi Male");
+          }
+        });
+      }
+
+      function getBotReply(msg) {
+        for (const key in qa) {
+          if (msg.includes(key)) {
+            return qa[key];
+          }
+        }
+        return `माफ कीजिए, मैं वह जानकारी नहीं दे सकता।\nकृपया "fees", "admission", "notes", जैसे शब्द दोबारा पूछें।`;
+      }
+
+      function appendMessage(sender, text) {
+        const div = document.createElement("div");
+        div.textContent = `${sender}: ${text}`;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function showTyping(callback) {
+        const div = document.createElement("div");
+        div.textContent = "🤖 बॉट typing...";
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+          chatMessages.removeChild(div);
+          callback();
+        }, 600);
+      }
+
+      // Time Greeting
+      const hour = new Date().getHours();
+      let greet = "";
+      if (hour < 12) greet = "🙏 शुभ प्रभात!";
+      else if (hour < 17) greet = "🌞 शुभ दोपहर!";
+      else greet = "🌙 शुभ संध्या!";
+      appendMessage("🤖 बॉट", greet + " आप कैसे हैं?");
+    });
+  </script>
+
+
+</script>
         <h2> New Batch </h2> 
         <Section class="batch">
                 
@@ -370,13 +612,14 @@ courses {
                 <div class="contact-info">
                     <h3>Our Contact Information</h3>
                     <p><strong>Address:</strong> Kathautiya ward no 05 pin-852101 Madhepura</p>
-                    <p><strong>Email:</strong> <a href="mailto:info@krishnasaphltaclasses.com">info@krishnasaphltaclasses.com</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@krishnasaphltaclasses.com">krishnasaphltaclasses@gmail.com</a></p>
                     <p><strong>Phone:</strong> +917903630178</p>
                 </div>
             </section></p>
            
         </div>
     </section>
+
     
 </body>
 <footer>
