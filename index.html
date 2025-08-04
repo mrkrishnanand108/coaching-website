@@ -7,346 +7,289 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <style>
-         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-        
-  
-    main div { font-family: Arial; margin: 20px; }
-    label, input, button { margin: 10px 0; display: block; }
-    #result, #qrCode { margin-top: 20px; }
-  header {
-            background: #051fc7;
-            color: #5ef214;
-            padding: 10px 0;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            font-size: 2rem;
-            font-style: italic;
-             
-        }
+         /* Base Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
-        header .logo h1 {
-            margin: 0;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-shadow: 0 0 2px #03ff70,0 0 20px #1afd65, 0 0 20px #c65593
-        }
-        header.logo h1{ 
-            animation: glow 1.5s infinite alternate ;
-        }
-        .logo.container{
-            width: 100%; 
-            height: 3px; 
-            flex: 1;
-            display: block;
-            object-fit: cover;
-    
-
-        }
-        
-        
-        nav {background: #070707;
-            color: #fff;
-            text-align:  left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            
-            }
-        ul {
-            list-style: none;
-            display: flex;
-            width: 100%;
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            display: flex;
-            justify-content: right;
-            text-align: right;
-        }
-
-        li {
-            padding: 10px;
-            position: relative;
-            margin: 0 5px;
-            text-align: center;
-        }
-
-        li a {
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        .hero {
-            background: url('hero-image.jpg') no-repeat center center/cover;
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .notice {
-            background: #ffeb3b;
-            text-align: center;
-            font-size: 20px;
-            font-style: italic;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            padding: 1px 0;
-            margin-top: 1px;
-        }
-       
-        
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            
-            bottom: 0;
-            width: 100%;
-           
-        }
-        
-        
-        .popup .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-         .courses1 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            border: #051fc7;
-        }
-
-        .courses1 {
-            background: #888484;
-            padding: 20px;
-            border: 1px solid #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-
-        .course h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-        cour
-       
-  
-    .footer {
-      margin-top: 50px;
-      color: gray;
-      font-size: 14px;
-    }
-
-   
-  .payment-logo {
-      width: 100px !important;
-      cursor: pointer;
-    }
-    .payment-box {
-      display: none;
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #aaa !important;
-      width: 300px;
-    }
-   
-.tab {
+/* Header */
+header {
+  background: #051fc7;
+  color: #5ef214;
+  padding: 20px;
+  text-align: center;
   display: flex;
-  align-items: left;
-  gap: 2px; /* space between the logos */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+header .logo h1 {
+  margin: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px #03ff70, 0 0 20px #1afd65, 0 0 20px #c65593;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #03ff70; }
+  to { text-shadow: 0 0 20px #1afd65; }
+}
+
+/* Navigation */
+nav {
+  background: #070707;
+  color: #fff;
+  padding: 10px;
+  text-align:  left;
+  justify-content: space-between;
+
+}
+
+nav ul {
   list-style: none;
- 
- 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
 }
-.tab img {
-   width: 80px;
-  height: auto;
-   display: flex;
-  border: 4px solid #000000; /* light blue border */
-  border-radius: 50%;
-  box-shadow: 
-    inset -5px -5px 15px rgba(12, 12, 12, 0.6),
-    inset 5px 5px 15px rgba(0, 0, 255, 0.1),
-    0 0 15px rgba(66, 204, 251, 0.7); /* outer glow for 3D water effect */
-  background: radial-gradient(circle at 30% 30%, #e0f7ff, #fdfeff);
-  padding: 5px;
+
+nav li {
+  padding: 10px;
+  margin: 0 5px;
 }
-.whatsapp-button{
 
-    display: inline-block;
-    padding: 10px 20px;
-    background: #25d366;
-    color: white; 
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 10px;
-    display: flex;
+nav li a {
+  text-decoration: none;
+  color: #fff;
 }
-.contact{text-decoration: none;
-color: #070707;
- display: flex;}
-.about{text-decoration: none;
-color: #070707;}
-courses{
-         
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-             display: flex;
-        }
 
-        .course {
-            background: #a76c6c;
-            padding: 20px;
-            border: 1px solid #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-             display: flex;
-        }
+/* Hero Section */
+.hero {
+  background: url('hero-image.jpg') no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px;
+}
 
-        .course h3 {
-            margin-bottom: 10px;
-            color: #333;
-        }
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
 
-        .course p {
-            margin-bottom: 10px;
-        }
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
 
-        .course a {
-            display: inline-block;
-            background: #2a8d72;
-            color: #fff;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-         display: flex;
-        }
-        .batch {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 10px;
-            
-        }
-   /* Basic Page Styling */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+/* Notice */
+.notice {
+  background: #ffeb3b;
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 10px;
+}
 
- .chatbot-logo {
+/* Courses Grid */
+.courses1, .batch {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.course {
+  background: #a76c6c;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.course h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.course p {
+  margin-bottom: 10px;
+}
+
+.course a {
+  display: inline-block;
+  background: #2a8d72;
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Chatbot */
+.chatbot-logo, #bot-icon {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 999;
-  display: flex;
-}
-
-.chatbot-logo {
   width: 80px;
-  height: auto;
   animation: jump 1s infinite ease-in-out;
   cursor: pointer;
-  display: flex;
 }
 
 @keyframes jump {
-  0%, 100% {
-    transform: translateY(0);
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+#chatbox {
+  position: fixed;
+  bottom: 110px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 999;
+  display: none;
+}
+
+#chat-header {
+  background: #003366;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+#chat-messages {
+  height: 200px;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f7f7f7;
+}
+
+#input-area {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+#user-input {
+  width: 70%;
+  padding: 8px;
+  border: none;
+  box-sizing: border-box;
+}
+
+#send-button, #mic-button {
+  width: 30%;
+  background: #092f56;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Payment Logos */
+.tab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+   list-style: none;
+  
+}
+
+.tab img {
+  width: 80px;
+  border: 4px solid #000;
+  border-radius: 50%;
+  box-shadow: inset -5px -5px 15px rgba(12, 12, 12, 0.6),
+              inset 5px 5px 15px rgba(0, 0, 255, 0.1),
+              0 0 15px rgba(66, 204, 251, 0.7);
+  background: radial-gradient(circle at 30% 30%, #e0f7ff, #fdfeff);
+  padding: 5px;
+ 
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #25d366;
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
   }
-  50% {
-    transform: translateY(-15px);
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    padding: 50px 10px;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+  
+
+  .courses1, .batch {
+    grid-template-columns: 1fr;
+  }
+
+  #chatbox {
+    width: 90%;
+    right: 5%;
+  }
+
+  .chatbot-logo, #bot-icon {
+    width: 60px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  #user-input {
+    width: 60%;
+  }
+
+  #send-button, #mic-button {
+    width: 40%;
+    font-size: 14px;
   }
 }
- #bot-icon {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 999;
-      cursor: pointer;
-      display: flex;
-    }
- #chatbox {
-      position: fixed;
-      bottom: 110px;
-      right: 20px;
-      width: 300px;
-      background: white;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      overflow: hidden;
-      z-index: 999;
-      font-family: sans-serif;
-      display: none;
-      
-    }
-
-    #chat-header {
-      background: #003366;
-      color: white;
-      padding: 10px;
-      font-weight: bold;
-    }
-
-    #chat-messages {
-      height: 200px;
-      padding: 10px;
-      overflow-y: auto;
-      background: #f7f7f7;
-      display: flex;
-    }
- #input-area {
-      display: flex;
-      border-top: 1px solid #ccc;
-      display: flex;
-    }
-    #user-input {
-      width: 70%;
-      padding: 8px;
-      border: none;
-      border-top: 1px solid #ccc;
-      box-sizing: border-box;
-      display: flex;
-    }
-#send-button, #mic-button {
-      width: 20%;
-      background: #092f56;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-    }
-   
-
-
   </style>
   
 </head>
