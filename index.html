@@ -21,13 +21,13 @@ body {
 header {
   background: #051fc7;
   color: #5ef214;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1rem;
   font-style: italic;
 }
 
@@ -48,7 +48,7 @@ header .logo h1 {
 nav {
   background: #070707;
   color: #fff;
-  padding: 10px;
+  padding: 5px;
   text-align:  left;
   justify-content: space-between;
 
@@ -64,7 +64,7 @@ nav ul {
 }
 
 nav li {
-  padding: 10px;
+  padding: 5px;
   margin: 0 5px;
 }
 
@@ -156,7 +156,7 @@ footer {
 
 @keyframes jump {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-5px); }
 }
 
 #chatbox {
@@ -375,149 +375,151 @@ footer {
     </div>
   </div>
    <script src="https://code.responsivevoice.org/responsivevoice.js?key=F9nylgLt"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const botIcon = document.getElementById("bot-icon");
-      const chatbox = document.getElementById("chatbox");
-      const chatMessages = document.getElementById("chat-messages");
-      const userInput = document.getElementById("user-input");
-      const sendButton = document.getElementById("send-button");
-      const micButton = document.getElementById("mic-button");
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=F9nylgLt"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const botIcon = document.getElementById("bot-icon");
+  const chatbox = document.getElementById("chatbox");
+  const chatMessages = document.getElementById("chat-messages");
+  const userInput = document.getElementById("user-input");
+  const sendButton = document.getElementById("send-button");
+  const micButton = document.getElementById("mic-button");
 
-     const qa = {
-  "hi": "नमस्ते! मैं कृष्णा सफलता क्लासेस का सहायक हूँ।",
-  "fees": "हमारे कोर्स की फीस अलग-अलग है। कृपया कोर्स का नाम बताएं।",
-  "timing": "क्लास टाइम: सुबह 5:30 से 9:00 और शाम 4:00 से 5:00।",
-  "admission": "एडमिशन के लिए ऑफिस आएं या कॉल करें: 7903630178",
-  "contact": "संपर्क करें: 7903630178",
-  "address": "हमारा पता: कृष्णा सफलता क्लासेस, पटना",
-  "notes": "सभी विषयों के नोट्स क्लास में दिए जाते हैं।",
-  "navodaya": "हम नवोदय, सैनिक व बोर्ड परीक्षा की तैयारी कराते हैं।",
-  "teacher": "हमारे सभी शिक्षक अनुभवी और विषय विशेषज्ञ हैं।",
-  "holiday": "अगली छुट्टी रविवार को है। तब तक पढ़ाई करते रहिए!",
-  "exam": "अगली परीक्षा की तारीख नोटिस बोर्ड पर है। ध्यान से देखिए।",
-  "subject": "हम मैथ्स, साइंस, इंग्लिश, हिंदी, संस्कृत सभी सब्जेक्ट पढ़ाते हैं।",
-  "lunch": "लंच टाइम 10:00 बजे होता है। लेकिन बिस्किट पहले ही गायब हो जाते हैं!",
-  "fail": "असफलता सफलता की सीढ़ी है। दोबारा कोशिश कीजिए!",
-  "pass": "बधाई हो! पास होने की मिठाई मुझे भी भेजिए।",
-  "crush": "Crush की बात बाद में। पहले बोर्ड की परीक्षा जीतिए!",
-  "dance": "डांस करना है? पहले क्लास में टॉप करना पड़ेगा!",
-  "wifi": "Wi-Fi केवल staff के लिए है। Students के लिए data pack बेहतर है।",
-  "laddu": "हमारे Marua Laddu का ब्रांड है 'Svadik' – घर जैसा स्वाद!",
-  "topper": "टॉपर बनने के लिए revision को अपना crush बनाओ!",
-  "revision": "Revision सबसे अच्छा exam से एक हफ्ता पहले होता है। panic से नहीं!",
-  "motivation": "रोज़ आइने में कहो: 'मैं कर सकता हूँ!' फिर action लो।",
-  "punishment": "गलती पर सज़ा? नहीं! सीख मिलती है यहाँ।",
-  "result": "रिज़ल्ट आने पर टेंशन नहीं। Feedback मिलेगा बेहतर करने का!",
-  "uniform": "Uniform जरूरी नहीं—but smart दिखना जरूरी है!",
-  "books": "Books हैं तो ब्रह्मा का वरदान है। पढ़ो और बदलो!",
-  "funny": "Funny बातें बाद में। अभी syllabus funny लग रहा है!",
-  "forget": "कुछ भूल गए? मैं हूँ न याद दिलाने के लिए।",
-  "hello": "Hello नहीं—Namaste बोलिए, संस्कार भी सीखिए!",
-  "toilet": "Toilet ब्रेक के लिए permission teacher से लेना ज़रूरी है।",
-  "discipline": "अनुशासन सफलता की कुंजी है। बाकी सब बाद में आता है।",
-  "birthday": "बर्थडे है? टॉफी लाओ सबको और आशीर्वाद पाओ!",
-  "calculator": "Math में calculator नहीं चलेगा। दिमाग चाहिए!",
-  "mobile": "मोबाइल क्लास के बाद चलाएं, पहले ध्यान क्लास में लगाएं!",
-  "game": "Game क्लास के बाद खेलें। यहाँ syllabus का level high है!",
-  "homework": "होमवर्क टालने की कला नहीं सिखाते—पूरा करना सिखाते हैं!",
-  "assignment": "Assignment का मतलब होता है deadline और discipline!",
-  "board": "Board exam की तैयारी हमारे साथ आसान और मजबूत होती है।",
-  "target": "Target सेट कीजिए—उसके पीछे मैं भी मदद करूंगा।",
-  "science": "Science में practical के साथ concepts भी जरूरी हैं।",
-  "maths": "Maths में सवालों से दोस्ती करना पड़ेगा!",
-  "english": "English बोलना सीखना है? क्लास में बोलिए, डरिए मत!",
-  "hindi": "हिन्दी हमारी मातृभाषा है—इसके व्याकरण में दम है!",
-  "sanskrit": "संस्कृत श्लोकों में ज्ञान की गहराई है। थोड़ा समझिए!",
-  "biology": "Biology में दिल होता है—but पढ़ाई में दिमाग भी लगेगा!",
-  "chemistry": "Chemistry में bonding करो—not सिर्फ रिएक्शन याद करो!",
-  "physics": "Physics में concept जानो—not बस formula रटना!",
-  "sleep": "नींद तब आए जब syllabus खत्म हो। वरना सपने syllabus वाले ही होंगे!",
-  "goal": "Goal बनाओ और रोज़ थोड़ा-थोड़ा उसकी तरफ बढ़ो।",
-  "routine": "रूटीन बनाना है तो 2 घंटे पढ़ाई रोज़ पक्की करो!"
-};
+  const qa = {
+    "fees": "हमारे कोर्स की फीस अलग-अलग है। कृपया कोर्स का नाम बताएं।",
+    "timing": "क्लास टाइम: सुबह 5:30 से 9:00 और शाम 4:00 से 5:00।",
+    "admission": "एडमिशन के लिए ऑफिस आएं या कॉल करें: 7903630178",
+    "contact": "संपर्क करें: 7903630178",
+    "address": "हमारा पता: कृष्णा सफलता क्लासेस, पटना",
+    "notes": "सभी विषयों के नोट्स क्लास में दिए जाते हैं।",
+    "navodaya": "हम नवोदय, सैनिक व बोर्ड परीक्षा की तैयारी कराते हैं।",
+    "teacher": "हमारे सभी शिक्षक अनुभवी और विषय विशेषज्ञ हैं।"
+  };
 
-      botIcon.onclick = () => {
-        chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
-      };
+  botIcon.onclick = () => {
+    chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+  };
 
-      sendButton.addEventListener("click", handleUserMessage);
+  sendButton.addEventListener("click", () => handleUserMessage());
+  micButton.addEventListener("click", () => startVoiceRecognition());
 
-      micButton.addEventListener("click", () => {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = "hi-IN";
-        recognition.interimResults = false;
-        recognition.onresult = (event) => {
-          const transcript = event.results[0][0].transcript;
-          userInput.value = transcript;
-          handleUserMessage();
-        };
-        recognition.onerror = () => {
-          appendMessage("🤖 बॉट", "🔇 आवाज़ पहचान में दिक्कत हुई, कृपया फिर प्रयास करें।");
-        };
-        recognition.start();
+  function startVoiceRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      appendMessage("🤖 बॉट", "🎙️ आपका ब्राउज़र आवाज़ पहचान को सपोर्ट नहीं करता।");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "hi-IN";
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      userInput.value = transcript;
+      handleUserMessage();
+    };
+
+    recognition.onerror = () => {
+      appendMessage("🤖 बॉट", "🔇 आवाज़ पहचान में दिक्कत हुई, कृपया फिर प्रयास करें।");
+    };
+
+    recognition.start();
+  }
+
+  async function handleUserMessage() {
+    const msg = userInput.value.toLowerCase().trim();
+    if (!msg) return;
+
+    appendMessage("👨‍🎓 आप", msg);
+    userInput.value = "";
+
+    showTyping();
+
+    const response = await getBotReply(msg);
+    appendMessage("🤖 बॉट", response);
+
+    if (responsiveVoice.voiceSupport()) {
+      responsiveVoice.speak(response, "Hindi Male");
+    }
+  }
+
+  async function getBotReply(msg) {
+    for (const key in qa) {
+      if (msg.includes(key)) {
+        return qa[key];
+      }
+    }
+
+    try {
+      const res = await fetch("https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium", {
+        method: "POST",
+        headers: {
+          "Authorization": "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", // 🔑 Replace this with your actual API key
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ inputs: msg })
       });
 
-      function handleUserMessage() {
-        const msg = userInput.value.toLowerCase().trim();
-        if (!msg) return;
-        appendMessage("👨‍🎓 आप", msg);
-        userInput.value = "";
+      const data = await res.json();
 
-        const response = getBotReply(msg);
-        showTyping(() => {
-          appendMessage("🤖 बॉट", response);
-          if (responsiveVoice.voiceSupport()) {
-            responsiveVoice.speak(response, "Hindi Male");
-          }
-        });
+      if (data.generated_text) {
+        return data.generated_text;
+      } else if (data.hasOwnProperty("error")) {
+        return "⚠️ Hugging Face API error: " + data.error;
+      } else {
+        return "माफ कीजिए, जवाब नहीं मिल पाया। कृपया फिर प्रयास करें।";
       }
+    } catch (error) {
+      return "⚠️ नेटवर्क या सर्वर में समस्या है। बाद में प्रयास करें।";
+    }
+  }
 
-      function getBotReply(msg) {
-        for (const key in qa) {
-          if (msg.includes(key)) {
-            return qa[key];
-          }
-        }
-        return `माफ कीजिए, मैं वह जानकारी नहीं दे सकता।\nकृपया "fees", "admission", "notes", जैसे शब्द दोबारा पूछें।`;
-      }
+  function appendMessage(sender, text) {
+    const div = document.createElement("div");
+    div.textContent = `${sender}: ${text}`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
 
-      function appendMessage(sender, text) {
-        const div = document.createElement("div");
-        div.textContent = `${sender}: ${text}`;
-        chatMessages.appendChild(div);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
+  function showTyping() {
+    const div = document.createElement("div");
+    div.textContent = "🤖 बॉट typing...";
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    setTimeout(() => {
+      chatMessages.removeChild(div);
+    }, 600);
+  }
 
-      function showTyping(callback) {
-        const div = document.createElement("div");
-        div.textContent = "🤖 बॉट typing...";
-        chatMessages.appendChild(div);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        setTimeout(() => {
-          chatMessages.removeChild(div);
-          callback();
-        }, 600);
-      }
-
-      // Time Greeting
-      const hour = new Date().getHours();
-      let greet = "";
-      if (hour < 12) greet = "🙏 शुभ प्रभात!";
-      else if (hour < 17) greet = "🌞 शुभ दोपहर!";
-      else greet = "🌙 शुभ संध्या!";
-      appendMessage("🤖 बॉट", greet + " आप कैसे हैं?");
-    });
-  </script>
+  // Time Greeting
+  const hour = new Date().getHours();
+  let greet = "";
+  if (hour < 12) greet = "🙏 शुभ प्रभात!";
+  else if (hour < 17) greet = "🌞 शुभ दोपहर!";
+  else greet = "🌙 शुभ संध्या!";
+  appendMessage("🤖 बॉट", greet + " आप कैसे हैं?");
+});
+</script>
 
 
 </script>
+<h2>
+  Video
+</h2>
+<section class="Video">
+  <img src="design.jpg" style="width: 33%;" >
+  <img src="money.jpg" style="width: 33%;">
+  <img src="study.jpg" style="width: 33%;">
+</section>
         <h2> New Batch </h2> 
         <Section class="batch">
                 
               
             <div class="course">
-               <img src="" alt="image01">
+              <h3>Class 7</h3>
+               <p>In-depth coverage of all subjects with special emphasis on preparation for higher classes.All Subject</p>
+                <a href="login.html">Select Now</a>
                 
             </div>
             <div class="course">
