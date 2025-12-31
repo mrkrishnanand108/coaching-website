@@ -1,582 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krishna Saphlta Classes</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
-    <style>
-         /* Base Styles */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-/* Header */
-header {
-  background: #051fc7;
-  color: #5ef214;
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-  font-style: italic;
-}
-
-header .logo h1 {
-  margin: 0;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-shadow: 0 0 2px #03ff70, 0 0 20px #1afd65, 0 0 20px #c65593;
-  animation: glow 1.5s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 5px #03ff70; }
-  to { text-shadow: 0 0 20px #1afd65; }
-}
-
-/* Navigation */
-nav {
-  background: #070707;
-  color: #fff;
-  padding: 5px;
-  text-align:  left;
-  justify-content: space-between;
-
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding: 0;
-  margin: 0;
-}
-
-nav li {
-  padding: 5px;
-  margin: 0 5px;
-}
-
-nav li a {
-  text-decoration: none;
-  color: #fff;
-}
-
-/* Hero Section */
-.hero {
-  background: url('hero-image.jpg') no-repeat center center/cover;
-  color: #fff;
-  text-align: center;
-  padding: 100px 20px;
-}
-
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-/* Notice */
-.notice {
-  background: #ffeb3b;
-  text-align: center;
-  font-size: 20px;
-  font-style: italic;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  padding: 10px;
-}
-
-/* Courses Grid */
-.courses1, .batch {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.course {
-  background: #a76c6c;
-  padding: 20px;
-  border: 1px solid #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.course h3 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.course p {
-  margin-bottom: 10px;
-}
-
-.course a {
-  display: inline-block;
-  background: #2a8d72;
-  color: #fff;
-  padding: 10px 15px;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-/* Footer */
-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-}
-
-/* Chatbot */
-.chatbot-logo, #bot-icon {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  width: 80px;
-  animation: jump 1s infinite ease-in-out;
-  cursor: pointer;
-}
-
-@keyframes jump {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-#chatbox {
-  position: fixed;
-  bottom: 110px;
-  right: 20px;
-  width: 300px;
-  background: white;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 999;
-  display: none;
-}
-
-#chat-header {
-  background: #003366;
-  color: white;
-  padding: 10px;
-  font-weight: bold;
-}
-
-#chat-messages {
-  height: 200px;
-  padding: 10px;
-  overflow-y: auto;
-  background: #f7f7f7;
-}
-
-#input-area {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-#user-input {
-  width: 70%;
-  padding: 8px;
-  border: none;
-  box-sizing: border-box;
-}
-
-#send-button, #mic-button {
-  width: 30%;
-  background: #092f56;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* Payment Logos */
-.tab {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-   list-style: none;
-  
-}
-
-.tab img {
-  width: 80px;
-  border: 4px solid #000;
-  border-radius: 50%;
-  box-shadow: inset -5px -5px 15px rgba(12, 12, 12, 0.6),
-              inset 5px 5px 15px rgba(0, 0, 255, 0.1),
-              0 0 15px rgba(66, 204, 251, 0.7);
-  background: radial-gradient(circle at 30% 30%, #e0f7ff, #fdfeff);
-  padding: 5px;
- 
-}
-
-/* WhatsApp Button */
-.whatsapp-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #25d366;
-  color: white;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-/* Responsive Media Queries */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero {
-    padding: 50px 10px;
-  }
-
-  .hero h2 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-  
-
-  .courses1, .batch {
-    grid-template-columns: 1fr;
-  }
-
-  #chatbox {
-    width: 90%;
-    right: 5%;
-  }
-
-  .chatbot-logo, #bot-icon {
-    width: 60px;
-    bottom: 10px;
-    right: 10px;
-  }
-
-  #user-input {
-    width: 60%;
-  }
-
-  #send-button, #mic-button {
-    width: 40%;
-    font-size: 14px;
-  }
-}
-  </style>
-  
+    <title>Krishna Saphita Classes - Best Coaching</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+
     <header>
-        
-        <div class="logo">
-            <h1>Krishna Saphlta Classes</h1>
-            
+        <div class="container nav-bar">
+            <div class="logo">Krishna <span style="color: #666; font-weight: 400;">Saphita Classes</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="result.html">Results</a></li>
+                    <li><a href="#">Notes</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/917903630178" class="whatsapp-nav-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
         </div>
-       
     </header>
-   
-    <nav>  
-        <ul><li>  <a href="https://wa.me/917903630178" class="whatsapp-button">Chat on WhatsApp</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="courses.html">Courses</a></li>
-            <li><a href="login.html">Login/Signup</a></li>
-        </ul>  
-        <select class ="model" onchange="openPDF(this)">
-             <option value=""Disabled selected>Model paper</option>
-             <option value="science.pdf">Science</option>
-             <option value="hindi.pdf">Hindi</option>
-             <option value="english.pdf">English</option>
-             <option value="maths_.pdf">Math</option>
-             <option value="Sanskrit.pdf">Sanskrit</option>
-             
-        </select> 
-    </nav>
-    
-   
-</div>
-    
-    <div class="notice">
-        <marquee behavior="scroll" direction="left"><h3>Welcome to K.K Saphlta Classes! Join our new batch start now 6 to 10 and 12th(Biology).</marquee>
-    </div>
 
-    <main>
-        <section class="tab">
-            
-         <li>
-              <a href="payment.html" target="_blank" rel="noopener noreferrer">
-                <img src="payment-icon-5646.png" alt="Pay Now" width="150">
-              </a>
-            <h3>Payment</h3></li>
-         <li>
-              <a href="courses.html" target="_blank" rel="noopener noreferrer">
-                <img src="cources.png" alt="Pay Now" width="150">
-              </a>
-            <h3>Cources</h3></li>
-        <li>
-              <a href="courses.html" target="_blank" rel="noopener noreferrer">
-                <img src="notebook-pen-icon.png" alt="Pay Now" width="150">
-              </a>
-            <h3>Notes</h3></li>
-         <li>
-              <a href="result.html" target="_blank" rel="noopener noreferrer">
-                <img src="notebook-pen-icon.png" alt="Pay Now" width="150">
-              </a>
-            <h3>Result</h3></li>
-         <li>
-              <a href="courses.html" target="_blank" rel="noopener noreferrer">
-                <img src="notebook-pen-icon.png" alt="Pay Now" width="150">
-              </a>
-            <h3>Notes</h3></li>
-            
-              
-        </section>
-
-<div id="bot-icon">
-
-  <img src="chatbot.png" alt="Chatbot Logo" class="chatbot-logo" />
- 
-</div>
-<!-- Chatbox -->
-  <div id="chatbox">
-    <div id="chat-header">🙏 Krishna Safalta Chatbot</div>
-    <div id="chat-messages"></div>
-    <div id="input-area">
-      <input type="text" id="user-input" placeholder="Apna prashn likhiye..." />
-      <button id="send-button">Send</button>
-      <button id="mic-button">🎤</button>
-    </div>
-  </div>
-   <script src="https://code.responsivevoice.org/responsivevoice.js?key=F9nylgLt"></script>
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=F9nylgLt"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const botIcon = document.getElementById("bot-icon");
-  const chatbox = document.getElementById("chatbox");
-  const chatMessages = document.getElementById("chat-messages");
-  const userInput = document.getElementById("user-input");
-  const sendButton = document.getElementById("send-button");
-  const micButton = document.getElementById("mic-button");
-
-  const qa = {
-    "fees": "हमारे कोर्स की फीस अलग-अलग है। कृपया कोर्स का नाम बताएं।",
-    "timing": "क्लास टाइम: सुबह 5:30 से 9:00 और शाम 4:00 से 5:00।",
-    "admission": "एडमिशन के लिए ऑफिस आएं या कॉल करें: 7903630178",
-    "contact": "संपर्क करें: 7903630178",
-    "address": "हमारा पता: कृष्णा सफलता क्लासेस, पटना",
-    "notes": "सभी विषयों के नोट्स क्लास में दिए जाते हैं।",
-    "navodaya": "हम नवोदय, सैनिक व बोर्ड परीक्षा की तैयारी कराते हैं।",
-    "teacher": "हमारे सभी शिक्षक अनुभवी और विषय विशेषज्ञ हैं।"
-  };
-
-  botIcon.onclick = () => {
-    chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
-  };
-
-  sendButton.addEventListener("click", () => handleUserMessage());
-  micButton.addEventListener("click", () => startVoiceRecognition());
-
-  function startVoiceRecognition() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      appendMessage("🤖 बॉट", "🎙️ आपका ब्राउज़र आवाज़ पहचान को सपोर्ट नहीं करता।");
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = "hi-IN";
-    recognition.interimResults = false;
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      userInput.value = transcript;
-      handleUserMessage();
-    };
-
-    recognition.onerror = () => {
-      appendMessage("🤖 बॉट", "🔇 आवाज़ पहचान में दिक्कत हुई, कृपया फिर प्रयास करें।");
-    };
-
-    recognition.start();
-  }
-
-  async function handleUserMessage() {
-    const msg = userInput.value.toLowerCase().trim();
-    if (!msg) return;
-
-    appendMessage("👨‍🎓 आप", msg);
-    userInput.value = "";
-
-    showTyping();
-
-    const response = await getBotReply(msg);
-    appendMessage("🤖 बॉट", response);
-
-    if (responsiveVoice.voiceSupport()) {
-      responsiveVoice.speak(response, "Hindi Male");
-    }
-  }
-
-  async function getBotReply(msg) {
-    for (const key in qa) {
-      if (msg.includes(key)) {
-        return qa[key];
-      }
-    }
-
-    try {
-      const res = await fetch("https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium", {
-        method: "POST",
-        headers: {
-          "Authorization": "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", // 🔑 Replace this with your actual API key
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ inputs: msg })
-      });
-
-      const data = await res.json();
-
-      if (data.generated_text) {
-        return data.generated_text;
-      } else if (data.hasOwnProperty("error")) {
-        return "⚠️ Hugging Face API error: " + data.error;
-      } else {
-        return "माफ कीजिए, जवाब नहीं मिल पाया। कृपया फिर प्रयास करें।";
-      }
-    } catch (error) {
-      return "⚠️ नेटवर्क या सर्वर में समस्या है। बाद में प्रयास करें।";
-    }
-  }
-
-  function appendMessage(sender, text) {
-    const div = document.createElement("div");
-    div.textContent = `${sender}: ${text}`;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  function showTyping() {
-    const div = document.createElement("div");
-    div.textContent = "🤖 बॉट typing...";
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    setTimeout(() => {
-      chatMessages.removeChild(div);
-    }, 600);
-  }
-
-  // Time Greeting
-  const hour = new Date().getHours();
-  let greet = "";
-  if (hour < 12) greet = "🙏 शुभ प्रभात!";
-  else if (hour < 17) greet = "🌞 शुभ दोपहर!";
-  else greet = "🌙 शुभ संध्या!";
-  appendMessage("🤖 बॉट", greet + " आप कैसे हैं?");
-});
-</script>
-
-
-</script>
-<h2>
-  Video
-</h2>
-<section class="Video">
-  <img src="design.jpg" style="width: 33%;" >
-  <img src="money.jpg" style="width: 33%;">
-  <img src="study.jpg" style="width: 33%;">
-</section>
-        <h2> New Batch </h2> 
-        <Section class="batch">
-                
-              
-            <div class="course">
-              <h3>Class 7</h3>
-               <p>In-depth coverage of all subjects with special emphasis on preparation for higher classes.All Subject</p>
-                <a href="login.html">Select Now</a>
-                
-            </div>
-            <div class="course">
-                <h3>Class 8</h3>
-                <p>In-depth coverage of all subjects with special emphasis on preparation for higher classes.All Subject</p>
-                <a href="login.html">Select Now</a>
-            </div>
-            <div class="course">
-                <h3>Class 9</h3>
-                <p>Rigorous academic training and preparation for board examinations.All Subject</p>
-                <a href="login.html">Select Now</a>
-            </div>
-            <div class="course">
-                <h3>Class 10</h3>
-                <p>Intensive coaching for board exams with personalized attention and doubt clearing sessions.
-                    All Subject
-                </p>
-                <a href="login.html">Select Now</a>
-            </div>
-        </Section>
-     <section class="courses1">
-        
-        
-        <div class="cour">
-            <h2><a class="about" href="About.html">about-us</a></h2>
-            <p> <h3>Our Mission</h3>
-                <p>Our mission is to empower students with the knowledge, skills, and confidence they need to succeed in their educational pursuits and beyond. We are dedicated to creating a supportive and inspiring learning environment that fosters growth and development.</p>
-    
-                <h3>Our Vision</h3>
-                <p>Our vision is to be a leading coaching institute recognized for excellence in teaching and learning. We aim to make a positive impact on the lives of our students and contribute to the betterment of society through education.</p>
-    
-                <h3>Our Team</h3>
-                <p>Meet our team of experienced and dedicated educators who are passionate about teaching and mentoring. Our teachers are experts in their respective fields and are committed to helping students achieve their full potential.</p>
-    
-                
-            
-        </div>
-        <div class="cour">
-            <h2><a class="contact" href="contact.html">Contact-us</a></h2>
-            <p><section class="contact-form">
-               
-                <p>If you have any questions or would like to learn more about Krishna Saphlta Classes, please fill out the form below. Our team will get in touch with you shortly.</p>
-                <div class="contact-info">
-                    <h3>Our Contact Information</h3>
-                    <p><strong>Address:</strong> Kathautiya ward no 05 pin-852101 Madhepura</p>
-                    <p><strong>Email:</strong> <a href="mailto:info@krishnasaphltaclasses.com">krishnasaphltaclasses@gmail.com</a></p>
-                    <p><strong>Phone:</strong> +917903630178</p>
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Best Coaching for Class 6–12 <br> (BSEB & CBSE)</h1>
+                <p>Online + Offline Classes Available</p>
+                <div class="hero-btns">
+                    <a href="courses.html"><button  class="btn-view">View Courses ></button></a>
+                    <button class="btn-demo">Free Demo Class ></button>
                 </div>
-            </section></p>
-           
+            </div>
         </div>
     </section>
 
-    
+    <div class="container">
+    <div class="feature-bar">
+        <a href="payment.html" target="_blank" rel="noopener noreferrer"> <div class="feature-item">
+            <i class="fas fa-credit-card icon-blue"></i> 
+           <span>Easy Payment</span>
+        </div></a>
+        
+        <a href="courses.html" target="_blank" rel="noopener noreferrer"><div class="feature-item">
+            <i class="fas fa-book icon-orange"></i> 
+            <span>Our Courses</span>
+        </div></a>
+        
+        <a href="Notes.html" target="_blank"><div class="feature-item">
+            <i class="fas fa-file-alt icon-light-blue"></i> 
+            <span>Study Notes</span>
+        </div></a>
+        
+        <a href="result.html" target="_blank" rel="noopener noreferrer"><div class="feature-item">
+            <i class="fas fa-trophy icon-gold"></i> 
+            <span>Top Results</span>
+        </div></a>
+        
+        <div class="feature-item">
+            <i class="fas fa-play-circle icon-dark-blue"></i> 
+            <span>Video Classes</span>
+        </div>
+    </div>
+</div>
+
+    <section class="container">
+        <h2 class="section-title">Our Popular Classes</h2>
+        <div class="class-grid">
+            <div class="class-card">
+                <div class="video-container">
+                    <img src="maths.jpg" alt="Maths">
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="class-info">
+                    <h3>Maths Class 8</h3>
+                </div>
+            </div>
+            <div class="class-card">
+                <div class="video-container">
+                    <img src="science.jpg" alt="Science">
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="class-info">
+                    <h3>Science Class 9</h3>
+                </div>
+            </div>
+            <div class="class-card">
+                <div class="video-container">
+                    <img src="english.jpg" alt="English">
+                    <div class="play-btn"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="class-info">
+                    <h3>English Class 10</h3>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container enrollment-section">
+    <div class="price-grid">
+        <div class="price-card">
+            <h3>Class 9</h3>
+            <div class="card-line"></div>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> All Subjects</li>
+                <li><i class="fas fa-check-circle"></i> BSEB Pattern</li>
+                <li><i class="fas fa-check-circle"></i> Weekly Test</li>
+            </ul>
+           <a href="courses.html"> <button class="enroll-btn">Enroll Now ></button></a>
+        </div>
+
+        <div class="price-card">
+            <h3>Class 10</h3>
+            <div class="card-line"></div>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> All Subjects</li>
+                <li><i class="fas fa-check-circle"></i> BSEB Pattern</li>
+                <li><i class="fas fa-check-circle"></i> Weekly Test</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now ></button>
+        </div>
+
+        <div class="price-card">
+            <h3>Class 8</h3>
+            <div class="card-line"></div>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> All Subjects</li>
+                <li><i class="fas fa-check-circle"></i> BSEB Pattern</li>
+                <li><i class="fas fa-check-circle"></i> Weekly Test</li>
+            </ul>
+            <button class="enroll-btn">Enroll Now ></button>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Address:Kathautiya Ward No-05, Bihar</p>
+                <p><i class="fas fa-phone"></i> Phone: 7903630178</p>
+                <p><i class="fas fa-envelope"></i> Email:kksafaltaclasses@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="contact.html">Contact-us</a></li>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Notes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 Krishna Saphita Classes. All Rights Reserved.
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-whatsapp"></i>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/7903630178" class="floating-wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
 </body>
-<footer>
-    <p>&copy; 2025 Krishna Saphlta Classes. All rights reserved.</p>
-    
-</footer>
-</html>
+</html> 
