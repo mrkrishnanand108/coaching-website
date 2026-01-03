@@ -1,11 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Download Result - Krishna Saphita Classes</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #f4f7fe; padding-bottom: 50px; }
+        .container { width: 90%; max-width: 800px; margin: auto; }
+        
+        header { background: #fff; padding: 15px 0; border-bottom: 2px solid #e0e6ed; margin-bottom: 40px; }
+        .logo { font-size: 22px; font-weight: bold; color: #0b4a8f; text-decoration: none; text-align: center; display: block; }
+
+        /* Search Section */
+        .search-box { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; margin-bottom: 30px; }
+        .search-box input { padding: 12px; width: 70%; border: 1px solid #ddd; border-radius: 25px; outline: none; font-size: 16px; margin-bottom: 15px; }
+        .search-btn { background: #0b4a8f; color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+
+        /* Result Area */
+        #resultWrapper { display: none; }
+        
+        /* PDF Content Styling */
+        .report-card { background: white; padding: 40px; border-radius: 0; border: 2px solid #0b4a8f; position: relative; }
+        .report-header { text-align: center; border-bottom: 2px solid #0b4a8f; margin-bottom: 20px; padding-bottom: 10px; }
+        .report-header h2 { color: #0b4a8f; text-transform: uppercase; }
+        
+        .result-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .result-table th, .result-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .result-table th { background: #f8f9fa; color: #333; }
+
+        .status-pass { color: #2e7d32; font-weight: bold; }
+        .status-fail { color: #d32f2f; font-weight: bold; }
+
+        /* Buttons */
+        .btn-container { margin-top: 20px; text-align: center; display: flex; gap: 10px; justify-content: center; }
+        .download-btn { background: #4caf50; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .download-btn:hover { background: #43a047; }
+
+        @media (max-width: 600px) { .search-box input { width: 100%; } }
+    </style>
 </head>
 <body>
-    
+
+<header>
+    <a href="index.html" class="logo">Krishna <span style="font-weight: 400; color: #666;">Saphita Classes</span></a>
+</header>
+
+<div class="container">
+    <div class="search-box">
+        <h3>Check & Download Result</h3>
+        <p style="margin-bottom: 15px; color: #666;">Enter Roll Number</p>
+        <input type="text" id="rollInput" placeholder="e.g. 1001"> <br>
+        <button class="search-btn" onclick="fetchResult()">Show Result</button>
+        <p id="error" style="color: red; margin-top: 10px; display: none;">Roll Number not found!</p>
+    </div>
+
+    <div id="resultWrapper">
+        <div id="pdfContent" class="report-card">
+            <div class="report-header">
+                <h2>K.K. SAFALTA CLASSES</h2>
+                <p>Kathautiya Ward no-05</p>
+                <p style="font-size: 12px; color: #666;">Academic Year: 2024-25</p>
+            </div>
+
+            <div id="studentDetails">
+                </div>
+
+            <div style="margin-top: 50px; display: flex; justify-content: space-between;">
+                <div style="text-align: center;">
+                    <p>_________________</p>
+                    <p style="font-size: 12px;">Student Signature</p>
+                </div>
+                <div style="text-align: center;">
+                    <p>_________________</p>
+                    <p style="font-size: 12px;">Director Signature</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="download-btn" onclick="downloadPDF()">
+                <i class="fas fa-file-pdf"></i> Download PDF Result
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sheetId = '1UV_SZLZchdMPLLU5Eq8gv9oJ1JyeoJh27WRzZzDNjZY';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+
+    let allData = [];
+
+    // Data load from sheet
+    async function init() {
+        const res = await fetch(url);
+        const text = await res.text();
+        allData = text.split('\n').map(row => 
+            row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, '').trim())
+        );
+    }
+
+    function fetchResult() {
+        const roll = document.getElementById('rollInput').value.trim();
+        const headers = allData[0];
+        const student = allData.find(row => row[0] === roll);
+
+        if (student) {
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('resultWrapper').style.display = 'block';
+
+            let html = `<table class="result-table">`;
+            headers.forEach((h, i) => {
+                let val = student[i] || "-";
+                let cls = (val.toLowerCase() === 'pass') ? 'status-pass' : (val.toLowerCase() === 'fail' ? 'status-fail' : '');
+                html += `<tr><th>${h}</th><td class="${cls}">${val}</td></tr>`;
+            });
+            html += `</table>`;
+            document.getElementById('studentDetails').innerHTML = html;
+        } else {
+            document.getElementById('resultWrapper').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        }
+    }
+
+    function downloadPDF() {
+        const element = document.getElementById('pdfContent');
+        const roll = document.getElementById('rollInput').value;
+        const opt = {
+            margin:       10,
+            filename:     `Result_Roll_${roll}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+    }
+
+    init();
+</script>
+
 </body>
 </html>
