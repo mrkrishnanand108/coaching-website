@@ -1,118 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-    <title>Student Login and Registration</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .container input[type="text"], .container input[type="password"], .container input[type="email"], .container input[type="tel"], .container input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .container select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .container button:hover {
-            background-color: #45a049;
-        }
-        .link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .link a {
-            text-decoration: none;
-            color: #4CAF50;
-        }
-        .register-container {
-            display: none;
-        }
-    </style>
-    <script>
-        function showRegister() {
-            document.getElementById('login-container').style.display = 'none';
-            document.getElementById('register-container').style.display = 'block';
-        }
-
-        function sendOTP() {
-            // Placeholder function to send OTP
-            alert("OTP sent to your mobile number!");
-        }
-
-        function verifyOTP() {
-            // Placeholder function to verify OTP
-            alert("OTP verified successfully!");
-        }
-    </script>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login - Krishna Saphita Classes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <div class="container" id="login-container">
-        <h2>Student Login</h2>
-        <form action="/login" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <div class="link">
-            <p>New here? <a href="javascript:showRegister()">Register Now</a></p>
-        </div>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: #f0f4f8; height: 100vh; display: flex; align-items: center; justify-content: center;
+            -webkit-user-select: none; user-select: none;
+        }
+
+        .login-card {
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 90%; max-width: 400px;
+            text-align: center; border-top: 5px solid #0b4a8f;
+        }
+
+        .logo-circle {
+            width: 80px; height: 80px; background: #eef5ff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; color: #0b4a8f; font-size: 30px;
+        }
+
+        h2 { color: #0b4a8f; margin-bottom: 8px; font-size: 22px; }
+        p.info { color: #666; font-size: 13px; margin-bottom: 25px; }
+
+        .field { text-align: left; margin-bottom: 18px; position: relative; }
+        .field label { display: block; margin-bottom: 7px; font-weight: 600; font-size: 14px; color: #333; }
+        .field i { position: absolute; left: 15px; top: 38px; color: #0b4a8f; }
+        
+        input { 
+            width: 100%; padding: 12px 15px 12px 42px; border: 2px solid #eee; 
+            border-radius: 12px; outline: none; transition: 0.3s; font-size: 15px;
+        }
+        input:focus { border-color: #0b4a8f; background: #f9fbff; }
+
+        .btn-login { 
+            width: 100%; background: #0b4a8f; color: white; border: none; 
+            padding: 14px; border-radius: 12px; font-size: 16px; font-weight: bold; 
+            cursor: pointer; margin-top: 10px; transition: 0.3s;
+        }
+        .btn-login:hover { background: #1a73e8; }
+
+        #msg { margin-top: 15px; font-size: 13px; display: none; padding: 10px; border-radius: 8px; }
+        .err { background: #fee; color: #e74c3c; }
+        .wait { color: #0b4a8f; }
+
+        .back-home { margin-top: 20px; display: block; text-decoration: none; color: #888; font-size: 13px; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<div class="login-card">
+    <div class="logo-circle"><i class="fas fa-user-shield"></i></div>
+    <h2>लॉगिन करें</h2>
+    <p class="info">आगे बढ़ने के लिए अपनी जानकारी भरें</p>
+
+    <div class="field">
+        <label>रोल नंबर (ID)</label>
+        <i class="fas fa-id-card"></i>
+        <input type="text" id="roll" placeholder="अपना रोल नंबर डालें">
     </div>
 
-    <div class="container register-container" id="register-container">
-        <h2>New Registration</h2>
-        <form action="/register" method="post" onsubmit="sendOTP(); return false;">
-            <input type="tel" name="mobile" placeholder="Mobile Number" required>
-            <button type="button" onclick="sendOTP()">Send OTP</button>
-            <input type="number" name="otp" placeholder="Enter OTP" required>
-            <button type="button" onclick="verifyOTP()">Verify OTP</button>
-            <input type="text" name="new_username" placeholder="Username" required>
-            <input type="password" name="new_password" placeholder="Password (6 digits)" pattern="\d{6}" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <select name="class" required>
-                <option value="">Select Class</option>
-                <option value="6">Class 6</option>
-                <option value="7">Class 7</option>
-                <option value="8">Class 8</option>
-                <option value="9">Class 9</option>
-                <option value="10">Class 10</option>
-                <option value="12">Class 12 (Biology)</option>
-            </select>
-            <button type="submit">Register</button>
-        </form>
+    <div class="field">
+        <label>पासवर्ड</label>
+        <i class="fas fa-lock"></i>
+        <input type="password" id="pass" placeholder="अपना पासवर्ड डालें">
     </div>
+
+    <button class="btn-login" onclick="handleLogin()">
+        <i class="fas fa-sign-in-alt"></i> पोर्टल खोलें
+    </button>
+
+    <div id="msg"></div>
+
+    <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> होम पेज पर वापस जाएँ</a>
+</div>
+
+<script>
+    // Sheet ID ko hide karne ke liye base64 encoding use ki hai
+   // Sheet ID ko hide karne ke liye encoded version
+const _c = "MVVWX1NaTFpjaGRNUExMVTVFcThndjlvSjFKeW9KaDI3V1J6WnpETmpaWQ==";
+
+// Yeh link automatic ban jayega
+const _u = `https://docs.google.com/spreadsheets/d/${atob(_c)}/gviz/tq?tqx=out:csv&sheet=Sheet1`;
+
+    async function handleLogin() {
+        const uRoll = document.getElementById('roll').value.trim();
+        const uPass = document.getElementById('pass').value.trim();
+        const msg = document.getElementById('msg');
+
+        if(!uRoll || !uPass) { alert("दोनों कॉलम भरें!"); return; }
+
+        msg.className = "wait";
+        msg.style.display = "block";
+        msg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> वेरिफिकेशन चल रहा है...';
+
+        try {
+            const res = await fetch(url);
+            const text = await res.text();
+            const rows = text.split('\n').map(r => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, '').trim()));
+
+            // Mapping: Col A(0)=Roll, Col G(6)=Password
+            const found = rows.find(r => r[0] === uRoll);
+
+            if(found && found[6] === uPass) {
+                // Success: Session set karein
+                sessionStorage.setItem("isLoggedIn", "true");
+                sessionStorage.setItem("studentName", found[1]);
+                sessionStorage.setItem("studentRoll", found[0]);
+
+                // Check karein ki student kahan jana chahta tha
+                const goDirect = sessionStorage.getItem("targetPage");
+                if(goDirect) {
+                    sessionStorage.removeItem("targetPage");
+                    window.location.href = goDirect;
+                } else {
+                    window.location.href = "index.html";
+                }
+            } else {
+                msg.className = "err";
+                msg.innerText = "गलत रोल नंबर या पासवर्ड!";
+            }
+        } catch (e) {
+            msg.className = "err";
+            msg.innerText = "इंटरनेट या सर्वर की समस्या!";
+        }
+    }
+
+    // Inspect Element block karne ke liye
+    document.onkeydown = (e) => {
+        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) return false;
+    };
+</script>
+
 </body>
 </html>
