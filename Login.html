@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - Krishna Saphita Classes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { 
+            background: linear-gradient(45deg, #0b4a8f, #1a73e8); 
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            -webkit-user-select: none; user-select: none;
+        }
+
+        .login-container {
+            background: white; padding: 40px; border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            width: 90%; max-width: 400px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+
+        .login-container::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
+            background: #f1c40f;
+        }
+
+        h2 { color: #0b4a8f; margin-bottom: 10px; font-size: 24px; }
+        p.subtitle { color: #666; font-size: 13px; margin-bottom: 30px; }
+
+        .input-box { position: relative; margin-bottom: 20px; text-align: left; }
+        .input-box label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 14px; }
+        .input-box i { position: absolute; left: 15px; top: 42px; color: #0b4a8f; }
+        
+        input { 
+            width: 100%; padding: 13px 15px 13px 45px; border: 2px solid #eee; 
+            border-radius: 12px; outline: none; transition: 0.3s; font-size: 16px;
+        }
+        input:focus { border-color: #0b4a8f; background: #f8fbff; }
+
+        .login-btn { 
+            width: 100%; background: #0b4a8f; color: white; border: none; 
+            padding: 15px; border-radius: 12px; font-size: 16px; font-weight: bold; 
+            cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .login-btn:hover { background: #1a73e8; transform: translateY(-2px); }
+
+        #loader { display: none; color: #0b4a8f; margin-top: 15px; font-weight: bold; }
+        #errorMsg { color: #e74c3c; font-size: 13px; margin-top: 15px; display: none; background: #fee; padding: 10px; border-radius: 8px; }
+
+        .footer { margin-top: 25px; font-size: 12px; color: #888; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<div class="login-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/3449/3449652.png" width="70" style="margin-bottom: 15px;">
+    <h2>स्टूडेंट लॉगिन</h2>
+    <p class="subtitle">कृष्णा सफिता क्लासेस - डिजिटल पोर्टल</p>
+
+    <div class="input-box">
+        <label>रोल नंबर (Roll Number)</label>
+        <i class="fas fa-id-badge"></i>
+        <input type="text" id="rollInput" placeholder="जैसे: 101">
+    </div>
+
+    <div class="input-box">
+        <label>पासवर्ड (Password)</label>
+        <i class="fas fa-key"></i>
+        <input type="password" id="passInput" placeholder="अपना पासवर्ड डालें">
+    </div>
+
+    <button class="login-btn" onclick="validateUser()">
+        <i class="fas fa-sign-in-alt"></i> लॉगिन करें
+    </button>
+
+    <div id="loader"><i class="fas fa-spinner fa-spin"></i> वेरीफाई हो रहा है...</div>
+    <div id="errorMsg">गलत रोल नंबर या पासवर्ड!</div>
+
+    <div class="footer">
+        पासवर्ड भूल गए? कोचिंग ऑफिस में संपर्क करें।
+    </div>
+</div>
+
+<script>
+    // SECURITY: Encoded Sheet ID to hide it from direct view
+    const _0x12 = "MUR6eG9FdEVEZkh4UGtqR2ZIa3BreUJQQ0RQRGxvTEgzcmxVRXBmcnJ6MVk=";
+    const dbUrl = `https://docs.google.com/spreadsheets/d/${atob(_0x12)}/gviz/tq?tqx=out:csv&sheet=Sheet1`;
+
+    async function validateUser() {
+        const roll = document.getElementById('rollInput').value.trim();
+        const pass = document.getElementById('passInput').value.trim();
+        const loader = document.getElementById('loader');
+        const error = document.getElementById('errorMsg');
+
+        if(!roll || !pass) {
+            alert("कृपया दोनों जानकारी भरें!");
+            return;
+        }
+
+        error.style.display = "none";
+        loader.style.display = "block";
+
+        try {
+            const response = await fetch(dbUrl);
+            const csvData = await response.text();
+            const rows = csvData.split('\n').map(r => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/"/g, '').trim()));
+
+            // Row mapping: 
+            // Col A (0) = Roll No, 
+            // Col B (1) = Student Name, 
+            // Col G (6) = Password (7th Column in Sheet)
+            const userRow = rows.find(r => r[0] === roll);
+
+            if(userRow && userRow[6] === pass) {
+                // SUCCESS
+                sessionStorage.setItem("isLoggedIn", "true");
+                sessionStorage.setItem("studentName", userRow[1]);
+                sessionStorage.setItem("studentRoll", userRow[0]);
+                window.location.href = "index.html"; // Yahan apne Home Page ka naam likhein
+            } else {
+                // WRONG CREDENTIALS
+                loader.style.display = "none";
+                error.style.display = "block";
+                error.innerText = "रोल नंबर या पासवर्ड गलत है!";
+            }
+        } catch (err) {
+            loader.style.display = "none";
+            error.style.display = "block";
+            error.innerText = "सर्वर से संपर्क नहीं हो पाया।";
+        }
+    }
+
+    // Security: Block F12, Ctrl+U, Ctrl+Shift+I
+    document.onkeydown = function(e) {
+        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) {
+            return false;
+        }
+    };
+</script>
+
+</body>
+</html>
